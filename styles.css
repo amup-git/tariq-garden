@@ -64,6 +64,15 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
   -webkit-background-clip:text;background-clip:text;color:transparent;
   margin-bottom:1.5rem;
 }
+.preloader-logo-img{
+  width:140px;height:auto;margin:0 auto 1.5rem;
+  filter:drop-shadow(0 8px 30px rgba(201,169,110,.25));
+  animation:logoFadeIn 1.2s var(--trans) forwards;
+}
+@keyframes logoFadeIn{
+  from{opacity:0;transform:scale(.92)}
+  to{opacity:1;transform:scale(1)}
+}
 .preloader-bar{width:220px;height:2px;background:rgba(255,255,255,.1);margin:0 auto;overflow:hidden;position:relative}
 .preloader-bar span{
   position:absolute;inset:0;
@@ -122,6 +131,13 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
   gap:2.5rem;
 }
 .brand{display:flex;align-items:center;gap:.9rem;color:var(--cream);flex-shrink:0}
+.brand-logo{
+  width:54px;height:auto;
+  flex-shrink:0;
+  filter:drop-shadow(0 4px 14px rgba(0,0,0,.3));
+  transition:transform .5s var(--trans), filter .4s;
+}
+.brand:hover .brand-logo{transform:scale(1.06) rotate(-2deg)}
 .brand-mark{
   width:48px;height:48px;
   display:grid;place-items:center;
@@ -135,6 +151,10 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
   flex-shrink:0;
 }
 .brand-mark.big{width:64px;height:64px;font-size:1.5rem;border-radius:8px}
+.f-brand-logo{
+  width:90px;height:auto;margin-bottom:.5rem;
+  filter:drop-shadow(0 6px 20px rgba(0,0,0,.4));
+}
 .brand-name{
   font-family:var(--display);
   font-size:1.1rem;letter-spacing:.28em;font-weight:500;text-transform:uppercase;
@@ -1395,7 +1415,8 @@ html[lang="ur"] .link-arrow i.fa-arrow-right{transform:scaleX(-1)}
   .nav{top:30px}
   .nav-inner{padding:.9rem 0;gap:.8rem}
   .nav-right{gap:.6rem}
-  .brand-name{font-size:.9rem;letter-spacing:.18em}
+  .brand-name{display:none}
+  .brand-logo{width:44px}
   .brand-mark{width:40px;height:40px}
   .lang-switch{padding:.3rem .6rem;gap:.3rem}
   .lang-opt{font-size:.68rem;padding:.15rem .3rem}

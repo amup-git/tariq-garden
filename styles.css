@@ -167,12 +167,13 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
   text-transform:uppercase;
 }
 .lang-opt[data-lang="ur"]{
-  font-family:"Noto Nastaliq Urdu", var(--sans);
-  font-size:.92rem;
+  font-family:"Almarai", "Readex Pro", var(--sans);
+  font-size:.88rem;
   letter-spacing:0;
   text-transform:none;
-  padding:.1rem .5rem;
+  padding:.15rem .4rem;
   line-height:1.2;
+  font-weight:700;
 }
 .lang-opt.active{color:var(--gold)}
 .lang-opt:hover{color:var(--gold)}
@@ -369,8 +370,9 @@ body.menu-open{overflow:hidden}
 
 /* ======== URDU MODE ======== */
 html[lang="ur"] body{
-  font-family:"Noto Nastaliq Urdu", "Gulzar", var(--sans);
-  line-height:2.2;
+  font-family:"Almarai", "Readex Pro", var(--sans);
+  line-height:1.85;
+  font-weight:400;
 }
 html[lang="ur"] .brand-name,
 html[lang="ur"] .menu-label,
@@ -413,17 +415,29 @@ html[lang="ur"] .gf,
 html[lang="ur"] .cc strong,
 html[lang="ur"] .cc span,
 html[lang="ur"] .mo-foot{
-  font-family:"Noto Nastaliq Urdu", "Gulzar", var(--sans) !important;
+  font-family:"Almarai", "Readex Pro", var(--sans) !important;
   letter-spacing:0 !important;
   text-transform:none !important;
   line-height:1.8;
 }
-html[lang="ur"] .hero-title{line-height:1.4}
-html[lang="ur"] .mo-links a{line-height:1.8;padding:1.2rem 0}
+html[lang="ur"] .hero-title{line-height:1.15;font-weight:800}
+html[lang="ur"] .mo-links a{line-height:1.3;padding:.9rem 0;font-weight:700}
 html[lang="ur"] .mo-links a em{font-family:var(--sans) !important}
-html[lang="ur"] .section-title{line-height:1.5}
-html[lang="ur"] .brand-name{letter-spacing:.05em !important;font-size:1.25rem}
-html[lang="ur"] .btn{letter-spacing:.02em !important}
+html[lang="ur"] .section-title{line-height:1.3;font-weight:700}
+html[lang="ur"] .brand-name{letter-spacing:.05em !important;font-size:1.1rem;font-weight:700}
+html[lang="ur"] .btn{letter-spacing:.02em !important;font-weight:700}
+html[lang="ur"] .amenity h3,
+html[lang="ur"] .life-meta h3,
+html[lang="ur"] .map-body h3,
+html[lang="ur"] .mp-live-info h3,
+html[lang="ur"] .leader h3,
+html[lang="ur"] .contact-form h3,
+html[lang="ur"] .mo-quote,
+html[lang="ur"] .testi p,
+html[lang="ur"] .pb-quote{line-height:1.45;font-weight:700}
+html[lang="ur"] .hero-sub,
+html[lang="ur"] .section-sub,
+html[lang="ur"] .lead{line-height:1.8;font-weight:400}
 html[lang="ur"] .hero-title .line-2 em{
   background:linear-gradient(135deg,var(--gold-soft),var(--gold));
   -webkit-background-clip:text;background-clip:text;color:transparent;

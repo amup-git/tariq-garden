@@ -30,18 +30,44 @@ const menuTrigger = document.getElementById('menuTrigger');
 const menuClose = document.getElementById('menuClose');
 const menuOverlay = document.getElementById('menuOverlay');
 
+let savedScroll = 0;
+function lockBodyScroll() {
+  savedScroll = window.scrollY;
+  document.body.style.position = 'fixed';
+  document.body.style.top = `-${savedScroll}px`;
+  document.body.style.left = '0';
+  document.body.style.right = '0';
+  document.body.style.width = '100%';
+}
+function unlockBodyScroll() {
+  document.body.style.position = '';
+  document.body.style.top = '';
+  document.body.style.left = '';
+  document.body.style.right = '';
+  document.body.style.width = '';
+  window.scrollTo(0, savedScroll);
+}
+
 function openMenu() {
+  lockBodyScroll();
   menuOverlay.classList.add('active');
+  menuTrigger.classList.add('active');
   document.body.classList.add('menu-open');
   menuOverlay.setAttribute('aria-hidden', 'false');
 }
 function closeMenu() {
   menuOverlay.classList.remove('active');
+  menuTrigger.classList.remove('active');
   document.body.classList.remove('menu-open');
   menuOverlay.setAttribute('aria-hidden', 'true');
+  // Delay unlocking so the closing animation can play cleanly
+  setTimeout(unlockBodyScroll, 420);
 }
 
-menuTrigger.addEventListener('click', openMenu);
+menuTrigger.addEventListener('click', () => {
+  if (menuOverlay.classList.contains('active')) closeMenu();
+  else openMenu();
+});
 menuClose.addEventListener('click', closeMenu);
 menuOverlay.querySelectorAll('[data-close-menu]').forEach(el => {
   el.addEventListener('click', closeMenu);

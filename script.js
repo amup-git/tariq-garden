@@ -1,394 +1,453 @@
-/* =========================================================
-   TARIQ GARDENS — Interactive Experience
-   ========================================================= */
+/* ═══════════════════════════════════════════════════════════════════
+   TARIQ GARDENS · v3 — The Estate
+   ═══════════════════════════════════════════════════════════════════ */
 
-/* ---------- Preloader ---------- */
-window.addEventListener('load', () => {
-  setTimeout(() => {
-    document.getElementById('preloader').classList.add('hidden');
-  }, 1400);
-});
-
-/* ---------- Current Year ---------- */
 document.getElementById('yr').textContent = new Date().getFullYear();
 
-/* ---------- Navbar scroll state ---------- */
+/* ─────────── LOADER ─────────── */
+(function loader(){
+  const loader = document.getElementById('loader');
+  const num    = document.getElementById('loadNum');
+  const bar    = document.getElementById('loadBar');
+  let p = 0;
+  const target = 100;
+  const step = () => {
+    const inc = Math.max(1, (target - p) * 0.05);
+    p = Math.min(target, p + inc);
+    num.textContent = Math.round(p);
+    bar.style.transform = `scaleX(${p/100})`;
+    if (p < target) {
+      setTimeout(step, 40);
+    } else {
+      setTimeout(() => loader.classList.add('done'), 600);
+    }
+  };
+  // Wait for initial paint
+  window.addEventListener('load', () => setTimeout(step, 300));
+})();
+
+/* ─────────── LENIS SMOOTH SCROLL ─────────── */
+let lenis = null;
+(function initLenis(){
+  if (typeof Lenis === 'undefined') return;
+  lenis = new Lenis({
+    duration: 1.2,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    smoothWheel: true,
+    wheelMultiplier: 1,
+    touchMultiplier: 1.5,
+  });
+  function raf(time){ lenis.raf(time); requestAnimationFrame(raf); }
+  requestAnimationFrame(raf);
+
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest('a[href^="#"]');
+    if (!a) return;
+    const href = a.getAttribute('href');
+    if (!href || href === '#') return;
+    const t = document.querySelector(href);
+    if (!t) return;
+    e.preventDefault();
+    closeMenu();
+    lenis.scrollTo(t, { offset: -60, duration: 1.4 });
+  });
+})();
+
+/* ─────────── CUSTOM CURSOR ─────────── */
+(function cursorInit(){
+  if (matchMedia('(hover:none)').matches) return;
+  const cursor = document.getElementById('cursor');
+  const label  = cursor.querySelector('.cursor-label');
+  let x = 0, y = 0, cx = 0, cy = 0;
+
+  window.addEventListener('mousemove', (e) => { x = e.clientX; y = e.clientY; });
+  function raf(){
+    cx += (x - cx) * 0.22;
+    cy += (y - cy) * 0.22;
+    cursor.style.transform = `translate(${cx}px, ${cy}px) translate(-50%,-50%)`;
+    requestAnimationFrame(raf);
+  }
+  raf();
+
+  document.addEventListener('mousedown', () => cursor.classList.add('down'));
+  document.addEventListener('mouseup',   () => cursor.classList.remove('down'));
+
+  // Hover handling
+  const selectors = 'a, button, .mi-item, .am, .vc, .ld, .sf, .tilt, [data-cursor]';
+  document.querySelectorAll(selectors).forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursor.classList.add('hover');
+      const c = el.dataset.cursor;
+      label.textContent = c || '';
+    });
+    el.addEventListener('mouseleave', () => {
+      cursor.classList.remove('hover');
+      label.textContent = '';
+    });
+  });
+})();
+
+/* ─────────── NAV SCROLL STATE ─────────── */
 const nav = document.getElementById('nav');
 const toTop = document.getElementById('toTop');
+const rail = document.getElementById('rail');
+const railN = document.getElementById('railN');
+const railFill = document.getElementById('railFill');
+
 window.addEventListener('scroll', () => {
-  if (window.scrollY > 80) {
-    nav.classList.add('scrolled');
-    toTop.classList.add('show');
-  } else {
-    nav.classList.remove('scrolled');
-    toTop.classList.remove('show');
-  }
+  const y = window.scrollY;
+  nav.classList.toggle('scrolled', y > 40);
+  toTop.classList.toggle('show', y > 400);
+  rail.classList.toggle('show', y > 400);
+
+  // Rail progress & chapter tracking
+  const total = document.documentElement.scrollHeight - window.innerHeight;
+  const p = Math.min(1, Math.max(0, y / total));
+  railFill.style.transform = `scaleY(${p})`;
+
+  const chapters = document.querySelectorAll('.ch');
+  let activeCh = 1;
+  chapters.forEach((ch, i) => {
+    const r = ch.getBoundingClientRect();
+    if (r.top < window.innerHeight * 0.5 && r.bottom > window.innerHeight * 0.3) {
+      activeCh = i + 1;
+    }
+  });
+  railN.textContent = String(activeCh).padStart(2,'0');
+}, { passive:true });
+
+toTop.addEventListener('click', () => {
+  if (lenis) lenis.scrollTo(0, { duration: 1.8 });
+  else window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
-/* ---------- Full-screen Overlay Menu ---------- */
-const menuTrigger = document.getElementById('menuTrigger');
-const menuClose = document.getElementById('menuClose');
-const menuOverlay = document.getElementById('menuOverlay');
+/* ─────────── MENU OVERLAY ─────────── */
+const menu = document.getElementById('menu');
+const menuBtn = document.getElementById('menuBtn');
 
 let savedScroll = 0;
-function lockBodyScroll() {
+function lockBody(){
   savedScroll = window.scrollY;
   document.body.style.position = 'fixed';
   document.body.style.top = `-${savedScroll}px`;
-  document.body.style.left = '0';
-  document.body.style.right = '0';
   document.body.style.width = '100%';
 }
-function unlockBodyScroll() {
+function unlockBody(){
   document.body.style.position = '';
   document.body.style.top = '';
-  document.body.style.left = '';
-  document.body.style.right = '';
   document.body.style.width = '';
   window.scrollTo(0, savedScroll);
 }
-
-function openMenu() {
-  lockBodyScroll();
-  menuOverlay.classList.add('active');
-  menuTrigger.classList.add('active');
+function openMenu(){
+  lockBody();
+  menu.classList.add('active');
+  menuBtn.classList.add('active');
   document.body.classList.add('menu-open');
-  menuOverlay.setAttribute('aria-hidden', 'false');
+  menu.setAttribute('aria-hidden','false');
 }
-function closeMenu() {
-  menuOverlay.classList.remove('active');
-  menuTrigger.classList.remove('active');
+function closeMenu(){
+  if (!menu.classList.contains('active')) return;
+  menu.classList.remove('active');
+  menuBtn.classList.remove('active');
   document.body.classList.remove('menu-open');
-  menuOverlay.setAttribute('aria-hidden', 'true');
-  // Delay unlocking so the closing animation can play cleanly
-  setTimeout(unlockBodyScroll, 420);
+  menu.setAttribute('aria-hidden','true');
+  setTimeout(unlockBody, 450);
 }
-
-menuTrigger.addEventListener('click', () => {
-  if (menuOverlay.classList.contains('active')) closeMenu();
-  else openMenu();
+menuBtn.addEventListener('click', () => {
+  menu.classList.contains('active') ? closeMenu() : openMenu();
 });
-menuClose.addEventListener('click', closeMenu);
-menuOverlay.querySelectorAll('[data-close-menu]').forEach(el => {
-  el.addEventListener('click', closeMenu);
-});
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape' && menuOverlay.classList.contains('active')) closeMenu();
+menu.querySelectorAll('[data-close]').forEach(el => el.addEventListener('click', closeMenu));
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && menu.classList.contains('active')) closeMenu();
 });
 
-/* ---------- Language Toggle (EN / UR) ---------- */
-function setLang(lang) {
+/* ─────────── LANGUAGE TOGGLE ─────────── */
+function setLang(lang){
   document.documentElement.setAttribute('lang', lang);
-  // Do NOT flip overall direction (would break grid layouts); Urdu text wraps correctly naturally
-
-  // Sync all toggle buttons
-  document.querySelectorAll('.lang-opt').forEach(btn => {
-    const isActive = btn.dataset.lang === lang;
-    btn.classList.toggle('active', isActive);
-    btn.setAttribute('aria-selected', isActive);
+  document.querySelectorAll('.lang-opt').forEach(b => {
+    b.classList.toggle('active', b.dataset.lang === lang);
   });
-
-  // Swap text content based on data-en / data-ur
-  document.querySelectorAll('[data-en], [data-ur]').forEach(el => {
-    const val = el.dataset[lang];
-    if (val !== undefined) el.textContent = val;
-  });
-
-  // Swap HTML blocks based on data-en-html / data-ur-html
-  document.querySelectorAll('[data-ur-html], [data-en-html]').forEach(el => {
-    const key = lang + 'Html';
-    if (el.dataset[key]) {
-      // Trusted content — authored by us, not user input
-      el.innerHTML = el.dataset[key];
-    }
-  });
-
-  try { localStorage.setItem('tg-lang', lang); } catch(e) {}
+  try { localStorage.setItem('tg-lang', lang); } catch(e){}
 }
-
 document.addEventListener('click', (e) => {
   const btn = e.target.closest('.lang-opt');
   if (!btn) return;
   setLang(btn.dataset.lang);
 });
+try { if (localStorage.getItem('tg-lang') === 'ur') setLang('ur'); } catch(e){}
 
-/* On load — capture original English HTML for any [data-en-html] elements */
-document.querySelectorAll('[data-en-html]').forEach(el => {
-  if (!el.dataset.enHtml) el.dataset.enHtml = el.innerHTML;
-});
+/* ─────────── HERO CAROUSEL ─────────── */
+(function heroCarousel(){
+  const slides = document.querySelectorAll('.hs-slide');
+  const progress = document.querySelector('#hsProgress span');
+  const captN = document.querySelector('.hsc-n');
+  const title = document.getElementById('hsTitle');
+  if (!slides.length) return;
 
-/* Restore preferred language */
-try {
-  const saved = localStorage.getItem('tg-lang');
-  if (saved === 'ur') setLang('ur');
-} catch(e) {}
+  const titles = [
+    'Main Boulevard · Entrance',
+    'Community Gardens · Dusk',
+    'Block Lighting · 2am',
+    'Central Park · Spring'
+  ];
+  let idx = 0;
+  const DURATION = 5500;
 
-/* ---------- Hero slideshow ---------- */
-const slides = document.querySelectorAll('.hero-slide');
-const dots = document.querySelectorAll('.hero-slide-nav .dot');
-let currentSlide = 0;
-function showSlide(i) {
-  slides.forEach(s => s.classList.remove('active'));
-  dots.forEach(d => d.classList.remove('active'));
-  slides[i].classList.add('active');
-  dots[i].classList.add('active');
-  currentSlide = i;
-}
-dots.forEach(d => {
-  d.addEventListener('click', () => {
-    showSlide(parseInt(d.dataset.slide));
-    resetSlideTimer();
+  function tick(){
+    slides.forEach(s => s.classList.remove('active'));
+    slides[idx].classList.add('active');
+    captN.textContent = String(idx + 1).padStart(2, '0');
+    title.textContent = titles[idx] || '';
+    progress.style.transition = 'none';
+    progress.style.transform = 'scaleX(0)';
+    requestAnimationFrame(() => {
+      progress.style.transition = `transform ${DURATION}ms linear`;
+      progress.style.transform = 'scaleX(1)';
+    });
+    idx = (idx + 1) % slides.length;
+  }
+  tick();
+  setInterval(tick, DURATION);
+})();
+
+/* ─────────── SPLIT TEXT REVEALS ─────────── */
+const splitObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('in');
+      splitObs.unobserve(e.target);
+    }
   });
-});
-let slideTimer = setInterval(() => showSlide((currentSlide + 1) % slides.length), 6000);
-function resetSlideTimer() {
-  clearInterval(slideTimer);
-  slideTimer = setInterval(() => showSlide((currentSlide + 1) % slides.length), 6000);
-}
+}, { threshold: 0.3 });
+document.querySelectorAll('.split').forEach(el => splitObs.observe(el));
 
-/* ---------- Gallery data ---------- */
+/* ─────────── REVEAL ON SCROLL ─────────── */
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('in');
+      revealObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -80px 0px' });
+
+document.querySelectorAll('.sf, .ld, .am, .vc, .feature-strip, .plan-list, .plan-live, .visit-form, .visit-dl, .pl-conn, .mosaic, .amen-extras, .hero-marks').forEach(el => {
+  el.classList.add('reveal');
+  revealObs.observe(el);
+});
+
+/* ─────────── MOUSE TILT ─────────── */
+(function tiltInit(){
+  if (matchMedia('(hover:none)').matches) return;
+  document.querySelectorAll('[data-tilt]').forEach(el => {
+    el.addEventListener('mousemove', (e) => {
+      const r = el.getBoundingClientRect();
+      const mx = (e.clientX - r.left) / r.width - 0.5;
+      const my = (e.clientY - r.top) / r.height - 0.5;
+      el.style.transform = `perspective(800px) rotateX(${-my * 4}deg) rotateY(${mx * 4}deg)`;
+    });
+    el.addEventListener('mouseleave', () => el.style.transform = '');
+  });
+})();
+
+/* ─────────── MAGNETIC BUTTONS ─────────── */
+(function magneticInit(){
+  if (matchMedia('(hover:none)').matches) return;
+  document.querySelectorAll('.magnet').forEach(el => {
+    el.addEventListener('mousemove', (e) => {
+      const r = el.getBoundingClientRect();
+      const mx = (e.clientX - r.left) - r.width / 2;
+      const my = (e.clientY - r.top) - r.height / 2;
+      el.style.transform = `translate(${mx * 0.2}px, ${my * 0.35}px)`;
+    });
+    el.addEventListener('mouseleave', () => el.style.transform = '');
+  });
+})();
+
+/* ─────────── GALLERY DATA ─────────── */
 const galleryData = [
-  { src: '01.jpg', title: 'Grand Entrance',        cat: 'architecture',   size: 'wide' },
-  { src: '04.jpg', title: 'Lined Boulevards',      cat: 'infrastructure', size: '' },
-  { src: '08.jpg', title: 'Evening Walk',          cat: 'community',      size: 'tall' },
-  { src: '02.jpg', title: 'Resident Sanctuary',    cat: 'architecture',   size: '' },
-  { src: '05.jpg', title: 'Green Avenue',          cat: 'landscape',      size: '' },
-  { src: '12.jpg', title: 'Block Gardens',         cat: 'landscape',      size: 'wide' },
-  { src: '03.jpg', title: 'Signature Roads',       cat: 'infrastructure', size: '' },
-  { src: '06.jpg', title: 'Community Park',        cat: 'landscape',      size: '' },
-  { src: '09.jpg', title: 'Architectural Detail',  cat: 'architecture',   size: 'tall' },
-  { src: '07.jpg', title: 'Tree-Lined Walks',      cat: 'landscape',      size: '' },
-  { src: '10.jpg', title: 'Lighting Infrastructure', cat: 'infrastructure', size: '' },
-  { src: '11.jpg', title: 'Peaceful Corners',      cat: 'community',      size: '' },
-  { src: '13.jpg', title: 'Water Supply',          cat: 'infrastructure', size: '' },
-  { src: '14.jpg', title: 'Wide Approach',         cat: 'architecture',   size: '' },
-  { src: '15.jpg', title: 'Morning Serenity',      cat: 'landscape',      size: 'wide' },
-  { src: '16.jpg', title: 'Residential Views',     cat: 'architecture',   size: '' },
-  { src: '17.jpg', title: 'Walkways',              cat: 'community',      size: '' },
-  { src: '18.jpg', title: 'Infrastructure',        cat: 'infrastructure', size: 'tall' },
-  { src: '19.jpg', title: 'Community Life',        cat: 'community',      size: '' },
-  { src: '20.jpg', title: 'Estate Views',          cat: 'architecture',   size: '' },
-  { src: '21.jpg', title: 'Evening Light',         cat: 'landscape',      size: '' },
-  { src: '22.jpg', title: 'Park Details',          cat: 'landscape',      size: '' },
-  { src: '23.jpg', title: 'Streetscape',           cat: 'infrastructure', size: 'wide' },
-  { src: '24.jpg', title: "Residents' Moments",    cat: 'community',      size: '' },
-  { src: '25.jpg', title: 'Garden Pathways',       cat: 'landscape',      size: '' },
-  { src: '26.jpg', title: 'Signature Corner',      cat: 'architecture',   size: 'tall' },
-  { src: '27.jpg', title: 'Block Living',          cat: 'community',      size: '' },
-  { src: '28.jpg', title: 'Urban Design',          cat: 'infrastructure', size: '' },
-  { src: '29.jpg', title: 'Neighbourhood',         cat: 'community',      size: '' },
-  { src: '30.jpg', title: 'Gardens',               cat: 'landscape',      size: '' },
-  { src: '31.jpg', title: 'The View',              cat: 'architecture',   size: '' },
-  { src: '32.jpg', title: 'Our Promise',           cat: 'community',      size: '' },
+  { n:'01', src:'01.jpg', title:'Grand Entrance',    cat:'architecture',   span:'mi-a' },
+  { n:'02', src:'04.jpg', title:'Main Boulevard',    cat:'infrastructure', span:'mi-b' },
+  { n:'03', src:'08.jpg', title:'Evening Walk',      cat:'community',      span:'mi-c' },
+  { n:'04', src:'12.jpg', title:'Block Gardens',     cat:'landscape',      span:'mi-d' },
+  { n:'05', src:'06.jpg', title:'Open Courtyards',   cat:'landscape',      span:'mi-e' },
+  { n:'06', src:'02.jpg', title:'Residential Lines', cat:'architecture',   span:'mi-f' },
+  { n:'07', src:'16.jpg', title:'Signature Roads',   cat:'infrastructure', span:'mi-b' },
+  { n:'08', src:'18.jpg', title:'Street Lighting',   cat:'infrastructure', span:'mi-a' },
+  { n:'09', src:'22.jpg', title:'Park Details',      cat:'landscape',      span:'mi-d' },
+  { n:'10', src:'24.jpg', title:'Moments of Rest',   cat:'community',      span:'mi-c' },
+  { n:'11', src:'28.jpg', title:'The Living Grid',   cat:'infrastructure', span:'mi-f' },
+  { n:'12', src:'32.jpg', title:'Our Promise',       cat:'community',      span:'mi-e' },
+  { n:'13', src:'05.jpg', title:'Green Avenue',      cat:'landscape',      span:'mi-a' },
+  { n:'14', src:'09.jpg', title:'Architectural Detail', cat:'architecture',span:'mi-d' },
+  { n:'15', src:'14.jpg', title:'Wide Approach',     cat:'architecture',   span:'mi-c' },
+  { n:'16', src:'19.jpg', title:'Community Life',    cat:'community',      span:'mi-b' },
+  { n:'17', src:'21.jpg', title:'Evening Light',     cat:'landscape',      span:'mi-f' },
+  { n:'18', src:'23.jpg', title:'Streetscape',       cat:'infrastructure', span:'mi-e' },
+  { n:'19', src:'25.jpg', title:'Garden Pathways',   cat:'landscape',      span:'mi-a' },
+  { n:'20', src:'26.jpg', title:'Signature Corner',  cat:'architecture',   span:'mi-d' },
+  { n:'21', src:'27.jpg', title:'Block Living',      cat:'community',      span:'mi-c' },
+  { n:'22', src:'29.jpg', title:'Neighbourhood',     cat:'community',      span:'mi-b' },
+  { n:'23', src:'30.jpg', title:'Gardens',           cat:'landscape',      span:'mi-f' },
+  { n:'24', src:'31.jpg', title:'The View',          cat:'architecture',   span:'mi-e' },
 ];
 
-const galleryGrid = document.getElementById('galleryGrid');
-let visibleCount = 12;
-let currentFilter = 'all';
+/* ─────────── HORIZONTAL SCROLL GALLERY ─────────── */
+(function horizontalGallery(){
+  const track = document.getElementById('hscrollTrack');
+  const frame = document.getElementById('hscroll');
+  const bar   = document.getElementById('hscrollBar');
+  const numN  = document.getElementById('hscrollN');
+  const numT  = document.getElementById('hscrollT');
+  if (!track) return;
 
-function buildGalleryItem(item, idx) {
-  const div = document.createElement('div');
-  div.className = `g-item ${item.size}`.trim();
-  div.dataset.cat = item.cat;
-  div.dataset.idx = idx;
+  // Pick a curated 12 for the horizontal strip
+  const strip = galleryData.slice(0, 12);
+  numT.textContent = strip.length;
 
-  const img = document.createElement('img');
-  img.src = `public/gallery/${item.src}`;
-  img.alt = item.title;
-  img.loading = 'lazy';
+  strip.forEach((item, i) => {
+    const el = document.createElement('div');
+    el.className = 'hs';
 
-  const overlay = document.createElement('div');
-  overlay.className = 'g-overlay';
+    const img = document.createElement('img');
+    img.src = `public/gallery/${item.src}`;
+    img.alt = item.title;
+    img.loading = 'lazy';
+    el.appendChild(img);
 
-  const meta = document.createElement('div');
-  const cat = document.createElement('span');
-  cat.textContent = item.cat;
-  const title = document.createElement('strong');
-  title.textContent = item.title;
-  meta.appendChild(cat);
-  meta.appendChild(title);
+    const lbl = document.createElement('div');
+    lbl.className = 'hs-lbl';
+    lbl.textContent = item.title;
+    el.appendChild(lbl);
 
-  const icon = document.createElement('i');
-  icon.className = 'fa-solid fa-expand';
+    const n = document.createElement('div');
+    n.className = 'hs-n';
+    n.textContent = String(i + 1).padStart(2, '0');
+    el.appendChild(n);
 
-  overlay.appendChild(meta);
-  overlay.appendChild(icon);
-
-  div.appendChild(img);
-  div.appendChild(overlay);
-
-  div.addEventListener('click', () => openLightbox(idx));
-  return div;
-}
-
-function renderGallery() {
-  galleryGrid.textContent = '';
-  galleryData.slice(0, visibleCount).forEach((item, idx) => {
-    galleryGrid.appendChild(buildGalleryItem(item, idx));
+    el.addEventListener('click', () => openLightbox(i));
+    track.appendChild(el);
   });
-  applyFilter(currentFilter);
-  if (typeof revealObserver !== 'undefined' && revealObserver) {
-    document.querySelectorAll('.g-item').forEach(el => {
-      el.classList.add('reveal');
-      revealObserver.observe(el);
+
+  // Convert vertical scroll over the frame into horizontal translate
+  function onScroll(){
+    const r = frame.getBoundingClientRect();
+    const h = frame.offsetHeight;
+    if (r.bottom < 0 || r.top > window.innerHeight) return;
+
+    const trackW = track.scrollWidth;
+    const travel = trackW - window.innerWidth;
+    if (travel <= 0) return;
+
+    // progress through the pinned viewport
+    const start = r.top;
+    const end = r.bottom - window.innerHeight;
+    // how much of the section is scrolled past
+    const passed = Math.min(1, Math.max(0, (-start) / h));
+    const x = -travel * passed;
+    track.style.transform = `translateX(${x}px)`;
+    bar.style.transform = `scaleX(${passed})`;
+
+    const activeIdx = Math.round(passed * (strip.length - 1));
+    numN.textContent = String(activeIdx + 1).padStart(2, '0');
+  }
+  // Make the frame tall enough to allow scrubbing
+  frame.style.height = `${Math.max(100, galleryData.length * 5)}vh`;
+  window.addEventListener('scroll', onScroll, { passive: true });
+})();
+
+/* ─────────── MOSAIC (below horizontal) ─────────── */
+(function mosaic(){
+  const grid = document.getElementById('mosaic');
+  if (!grid) return;
+
+  let shown = 12;
+  function render(){
+    grid.textContent = '';
+    galleryData.slice(0, shown).forEach((it, i) => {
+      const div = document.createElement('div');
+      div.className = `mi-item ${it.span}`;
+      div.dataset.cat = it.cat;
+      div.dataset.idx = i;
+      const img = document.createElement('img');
+      img.src = `public/gallery/${it.src}`;
+      img.alt = it.title;
+      img.loading = 'lazy';
+      div.appendChild(img);
+      const cap = document.createElement('div');
+      cap.className = 'mi-cap';
+      cap.textContent = `${it.n} · ${it.title}`;
+      div.appendChild(cap);
+      div.addEventListener('click', () => openLightbox(i));
+      grid.appendChild(div);
     });
   }
-}
+  render();
 
-function applyFilter(cat) {
-  currentFilter = cat;
-  document.querySelectorAll('.g-item').forEach(el => {
-    if (cat === 'all' || el.dataset.cat === cat) el.classList.remove('hide');
-    else el.classList.add('hide');
-  });
-}
-
-document.querySelectorAll('.gf').forEach(btn => {
+  const btn = document.getElementById('mosaicMore');
   btn.addEventListener('click', () => {
-    document.querySelectorAll('.gf').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    applyFilter(btn.dataset.filter);
+    if (shown >= galleryData.length) { shown = 12; btn.querySelector('span').textContent = 'Reveal all 32 frames'; btn.querySelector('i').textContent = '↓'; }
+    else { shown = galleryData.length; btn.querySelector('span').textContent = 'Show less'; btn.querySelector('i').textContent = '↑'; }
+    render();
   });
-});
+})();
 
-document.getElementById('loadMore').addEventListener('click', (e) => {
-  const btn = e.currentTarget;
-  const span = btn.querySelector('span');
-  const icon = btn.querySelector('i');
-  if (visibleCount >= galleryData.length) {
-    visibleCount = 12;
-    span.textContent = 'Reveal More Moments';
-    icon.className = 'fa-solid fa-plus';
-  } else {
-    visibleCount = galleryData.length;
-    span.textContent = 'Show Less';
-    icon.className = 'fa-solid fa-minus';
-  }
-  renderGallery();
-  const gSection = document.getElementById('gallery');
-  window.scrollTo({ top: gSection.offsetTop - 80, behavior: 'smooth' });
-});
-
-/* ---------- Lightbox ---------- */
+/* ─────────── LIGHTBOX ─────────── */
 const lightbox = document.getElementById('lightbox');
-const lbImg = document.getElementById('lbImg');
-const lbCaption = document.getElementById('lbCaption');
-let lbIndex = 0;
-
-function openLightbox(idx) {
-  lbIndex = idx;
+const lbImg    = document.getElementById('lbImg');
+const lbTitle  = document.getElementById('lbTitle');
+const lbIdx    = document.getElementById('lbIdx');
+let lbI = 0;
+function openLightbox(i){
+  lbI = i;
   updateLb();
   lightbox.classList.add('active');
-  document.body.style.overflow = 'hidden';
+  lightbox.setAttribute('aria-hidden','false');
+  if (lenis) lenis.stop();
 }
-function closeLightbox() {
+function closeLightbox(){
   lightbox.classList.remove('active');
-  document.body.style.overflow = '';
+  lightbox.setAttribute('aria-hidden','true');
+  if (lenis) lenis.start();
 }
-function updateLb() {
-  const item = galleryData[lbIndex];
-  lbImg.src = `public/gallery/${item.src}`;
-  lbCaption.textContent = `${item.title}  ·  ${String(lbIndex + 1).padStart(2, '0')} / ${galleryData.length}`;
+function updateLb(){
+  const it = galleryData[lbI];
+  lbImg.src = `public/gallery/${it.src}`;
+  lbImg.alt = it.title;
+  lbTitle.textContent = it.title;
+  lbIdx.textContent = `${String(lbI + 1).padStart(2,'0')} / ${galleryData.length}`;
 }
 document.getElementById('lbClose').addEventListener('click', closeLightbox);
-document.getElementById('lbPrev').addEventListener('click', () => {
-  lbIndex = (lbIndex - 1 + galleryData.length) % galleryData.length;
-  updateLb();
-});
-document.getElementById('lbNext').addEventListener('click', () => {
-  lbIndex = (lbIndex + 1) % galleryData.length;
-  updateLb();
-});
+document.getElementById('lbPrev').addEventListener('click', () => { lbI = (lbI - 1 + galleryData.length) % galleryData.length; updateLb(); });
+document.getElementById('lbNext').addEventListener('click', () => { lbI = (lbI + 1) % galleryData.length; updateLb(); });
 lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
 document.addEventListener('keydown', (e) => {
   if (!lightbox.classList.contains('active')) return;
   if (e.key === 'Escape') closeLightbox();
-  if (e.key === 'ArrowLeft') document.getElementById('lbPrev').click();
+  if (e.key === 'ArrowLeft')  document.getElementById('lbPrev').click();
   if (e.key === 'ArrowRight') document.getElementById('lbNext').click();
 });
 
-/* ---------- Counter animation ---------- */
-function animateCounter(el) {
-  const target = parseInt(el.dataset.count);
-  const suffix = el.dataset.suffix || '';
-  const duration = 2200;
-  const start = performance.now();
-  function tick(now) {
-    const p = Math.min((now - start) / duration, 1);
-    const eased = 1 - Math.pow(1 - p, 3);
-    el.textContent = Math.round(target * eased) + suffix;
-    if (p < 1) requestAnimationFrame(tick);
-  }
-  requestAnimationFrame(tick);
-}
-
-/* ---------- Reveal on scroll ---------- */
-const revealTargets = [
-  '.story-copy', '.story-media',
-  '.life-card',
-  '.amenity',
-  '.map-card',
-  '.mp-live',
-  '.testi',
-  '.leader',
-  '.section-head',
-  '.cta-content',
-  '.contact-info', '.contact-form'
-];
-revealTargets.forEach(sel => document.querySelectorAll(sel).forEach((el, i) => {
-  el.classList.add('reveal');
-  if (i % 3 === 1) el.classList.add('delay-1');
-  if (i % 3 === 2) el.classList.add('delay-2');
-}));
-
-const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      revealObserver.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
-
-document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-
-/* Initial gallery render */
-renderGallery();
-
-/* ---------- Counter trigger ---------- */
-const counterObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      animateCounter(entry.target);
-      counterObserver.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.4 });
-document.querySelectorAll('.counter .num').forEach(el => counterObserver.observe(el));
-
-/* ---------- Back to top ---------- */
-toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-
-/* ---------- Contact form ---------- */
-function handleSubmit(form) {
-  const success = form.querySelector('#formSuccess');
-  success.classList.add('show');
+/* ─────────── VISIT FORM ─────────── */
+window.handleVisit = function(form){
+  const ok = form.querySelector('#vfOk');
+  ok.classList.add('show');
   setTimeout(() => {
     form.reset();
-    setTimeout(() => success.classList.remove('show'), 5000);
+    setTimeout(() => ok.classList.remove('show'), 4500);
   }, 300);
-}
+};
 
-/* ---------- Parallax gentle movement on hero slides ---------- */
-let rafId;
-window.addEventListener('scroll', () => {
-  if (rafId) return;
-  rafId = requestAnimationFrame(() => {
-    const sc = window.scrollY;
-    if (sc < window.innerHeight) {
-      const active = document.querySelector('.hero-slide.active');
-      if (active) active.style.transform = `scale(${1 + sc * 0.0004}) translateY(${sc * 0.15}px)`;
-    }
-    rafId = null;
-  });
-});
+/* ─────────── PL-CONN BAR REVEAL ─────────── */
+const plConn = document.querySelector('.pl-conn');
+if (plConn) {
+  const plObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        plConn.classList.add('in');
+        plObs.unobserve(plConn);
+      }
+    });
+  }, { threshold: 0.3 });
+  plObs.observe(plConn);
+}

@@ -3,697 +3,718 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Tariq Gardens — A Life Beyond Living | Lahore, Pakistan</title>
-<meta name="description" content="Tariq Gardens is Lahore's most refined address — an LDA-approved master-planned community offering luxury living, landscaped avenues, world-class amenities and a lifestyle reserved for the few." />
+<title>Tariq Gardens · The Estate</title>
+<meta name="description" content="Tariq Gardens — a 30-year-old LDA-approved master-planned community in Lahore. Seventeen blocks of boulevards, gardens, and enduring craft." />
 <link rel="icon" href="public/logo.png" type="image/png" />
 <link rel="apple-touch-icon" href="public/logo.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@200;300;400;500;600;700&family=Cinzel:wght@400;500;600;700&family=Almarai:wght@300;400;700;800&family=Readex+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@200;300;400;500;600&family=JetBrains+Mono:wght@300;400;500&family=Almarai:wght@300;400;700;800&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="styles.css" />
 </head>
-<body>
+<body data-theme="midnight">
 
-<!-- Preloader -->
-<div class="preloader" id="preloader">
-  <div class="preloader-inner">
-    <img src="public/logo.png" alt="Tariq Gardens" class="preloader-logo-img" />
-    <div class="preloader-bar"><span></span></div>
-    <div class="preloader-text">SECURITY · PROSPERITY · QUALITY</div>
+<!-- Grain + Cursor -->
+<div class="grain" aria-hidden="true"></div>
+<div class="cursor" id="cursor" aria-hidden="true">
+  <div class="cursor-ring"></div>
+  <div class="cursor-dot"></div>
+  <div class="cursor-label"></div>
+</div>
+
+<!-- ═══════════════════════ LOADER ═══════════════════════ -->
+<div class="loader" id="loader">
+  <div class="loader-top">
+    <div class="loader-mark">
+      <img src="public/logo.png" alt="" />
+    </div>
+    <div class="loader-meta">
+      <span class="loader-label">Tariq Gardens</span>
+      <span class="loader-sub">Est. 1992 · Lahore</span>
+    </div>
+  </div>
+  <div class="loader-center">
+    <div class="loader-quote">
+      <span class="lq-line lq-1">A thirty-year</span>
+      <span class="lq-line lq-2">estate,</span>
+      <span class="lq-line lq-3">unfolding…</span>
+    </div>
+  </div>
+  <div class="loader-bottom">
+    <div class="loader-num"><span id="loadNum">0</span>%</div>
+    <div class="loader-bar"><span id="loadBar"></span></div>
+    <div class="loader-tag">— Preparing the estate</div>
   </div>
 </div>
 
-<!-- Announcement Bar -->
-<div class="announcement">
-  <div class="announcement-track">
-    <span><i class="fa-solid fa-seedling"></i> LDA Approved Master-Planned Community</span>
-    <span><i class="fa-solid fa-location-dot"></i> Lahore, Pakistan</span>
-    <span><i class="fa-solid fa-award"></i> 30+ Years of Trust</span>
-    <span><i class="fa-solid fa-tree"></i> Acres of Green Belts &amp; Parks</span>
-    <span><i class="fa-solid fa-shield-halved"></i> 24/7 Gated Security</span>
-    <span><i class="fa-solid fa-seedling"></i> LDA Approved Master-Planned Community</span>
-    <span><i class="fa-solid fa-location-dot"></i> Lahore, Pakistan</span>
-    <span><i class="fa-solid fa-award"></i> 30+ Years of Trust</span>
-  </div>
-</div>
-
-<!-- Navigation -->
+<!-- ═══════════════════════ NAV ═══════════════════════ -->
 <header class="nav" id="nav">
   <div class="nav-inner">
-    <a href="#home" class="brand">
-      <img src="public/logo.png" alt="Tariq Gardens" class="brand-logo" />
-      <span class="brand-name" data-en="Tariq&nbsp;Gardens" data-ur="طارق گارڈنز">Tariq&nbsp;Gardens</span>
+    <a href="#top" class="brand" data-cursor="return">
+      <img src="public/logo.png" alt="" class="brand-img" />
+      <div class="brand-word">
+        <em>Tariq Gardens</em>
+        <span>Est. 1992 · Lahore</span>
+      </div>
     </a>
 
+    <nav class="nav-chapters" aria-label="Primary">
+      <a href="#chapter-01" data-idx="01">The Estate</a>
+      <a href="#chapter-02" data-idx="02">Master Plan</a>
+      <a href="#chapter-03" data-idx="03">Amenities</a>
+      <a href="#chapter-04" data-idx="04">Gallery</a>
+      <a href="#chapter-05" data-idx="05">Leadership</a>
+    </nav>
+
     <div class="nav-right">
-      <div class="lang-switch" id="langSwitch" role="tablist" aria-label="Language">
-        <button class="lang-opt active" data-lang="en" role="tab" aria-selected="true">EN</button>
-        <span class="lang-sep">·</span>
-        <button class="lang-opt" data-lang="ur" role="tab" aria-selected="false">اردو</button>
+      <div class="lang">
+        <button class="lang-opt active" data-lang="en">EN</button>
+        <span>/</span>
+        <button class="lang-opt" data-lang="ur">اردو</button>
       </div>
-
-      <a href="tel:+924235844230" class="nav-phone" aria-label="Call">
-        <i class="fa-solid fa-phone"></i>
-        <span data-en="+92 42 3584 4230" data-ur="+۹۲ ۴۲ ۳۵۸۴ ۴۲۳۰">+92 42 3584 4230</span>
+      <a href="#visit" class="nav-cta" data-cursor="visit">
+        <span class="nc-dot"></span>
+        Request a Viewing
       </a>
-
-      <a href="#contact" class="nav-cta">
-        <span data-en="Schedule a Visit" data-ur="ملاقات طے کریں">Schedule a Visit</span>
-        <i class="fa-solid fa-arrow-right"></i>
-      </a>
-
-      <button class="menu-trigger" id="menuTrigger" aria-label="Open menu">
-        <span class="menu-label" data-en="Menu" data-ur="مینو">Menu</span>
-        <span class="menu-bars"><i></i><i></i><i></i></span>
+      <button class="menu-btn" id="menuBtn" aria-label="Open menu" data-cursor="menu">
+        <span></span><span></span>
       </button>
     </div>
   </div>
 </header>
 
-<!-- Full-screen Overlay Menu -->
-<div class="menu-overlay" id="menuOverlay" aria-hidden="true">
-  <div class="mo-bg" style="background-image:url('public/gallery/16.jpg')"></div>
-  <div class="mo-veil"></div>
-
-  <header class="mo-top">
-    <a href="#home" class="brand" data-close-menu>
-      <span class="brand-mark">TG</span>
-      <span class="brand-name" data-en="Tariq&nbsp;Gardens" data-ur="طارق گارڈنز">Tariq&nbsp;Gardens</span>
-    </a>
-    <button class="mo-close" id="menuClose" aria-label="Close menu">
-      <span data-en="Close" data-ur="بند کریں">Close</span>
-      <i class="fa-solid fa-xmark"></i>
-    </button>
-  </header>
-
-  <div class="mo-body container">
-    <div class="mo-left">
-      <div class="mo-eyebrow" data-en="Navigate the Estate" data-ur="جاگیر میں داخل ہوں"><span></span>Navigate the Estate</div>
-
-      <nav class="mo-links">
-        <a href="#home" data-close-menu><em>01</em><span data-en="Home" data-ur="صفحۂ اول">Home</span></a>
-        <a href="#story" data-close-menu><em>02</em><span data-en="Our Story" data-ur="ہماری داستان">Our Story</span></a>
-        <a href="#lifestyle" data-close-menu><em>03</em><span data-en="Lifestyle" data-ur="طرزِ زندگی">Lifestyle</span></a>
-        <a href="#amenities" data-close-menu><em>04</em><span data-en="Amenities" data-ur="سہولیات">Amenities</span></a>
-        <a href="#masterplan" data-close-menu><em>05</em><span data-en="Master Plan" data-ur="جامع منصوبہ">Master Plan</span></a>
-        <a href="#gallery" data-close-menu><em>06</em><span data-en="Gallery" data-ur="نگارخانہ">Gallery</span></a>
-        <a href="#leadership" data-close-menu><em>07</em><span data-en="Leadership" data-ur="قیادت">Leadership</span></a>
-        <a href="#contact" data-close-menu><em>08</em><span data-en="Contact" data-ur="رابطہ">Contact</span></a>
+<!-- ═══════════════════════ MENU OVERLAY ═══════════════════════ -->
+<div class="menu" id="menu" aria-hidden="true">
+  <div class="menu-cols">
+    <div class="menu-l">
+      <div class="menu-eyebrow"><span class="dash"></span>Navigate the Estate</div>
+      <nav class="menu-nav">
+        <a href="#top" data-close><span class="mi">00</span><span class="ml">Arrival</span><span class="ma">→</span></a>
+        <a href="#chapter-01" data-close><span class="mi">01</span><span class="ml">The Estate</span><span class="ma">→</span></a>
+        <a href="#chapter-02" data-close><span class="mi">02</span><span class="ml">Master Plan</span><span class="ma">→</span></a>
+        <a href="#chapter-03" data-close><span class="mi">03</span><span class="ml">Amenities</span><span class="ma">→</span></a>
+        <a href="#chapter-04" data-close><span class="mi">04</span><span class="ml">Gallery</span><span class="ma">→</span></a>
+        <a href="#chapter-05" data-close><span class="mi">05</span><span class="ml">Leadership</span><span class="ma">→</span></a>
+        <a href="#chapter-06" data-close><span class="mi">06</span><span class="ml">Voices</span><span class="ma">→</span></a>
+        <a href="#visit" data-close><span class="mi">07</span><span class="ml">Visit</span><span class="ma">→</span></a>
       </nav>
     </div>
-
-    <aside class="mo-right">
-      <div class="mo-card">
-        <div class="mo-eyebrow" data-en="By Appointment" data-ur="اپائنٹمنٹ سے"><span></span>By Appointment</div>
-        <h3 class="mo-quote" data-en="A private tour, arranged entirely around you." data-ur="ایک نجی دورہ، مکمل طور پر آپ کے لیے ترتیب دیا گیا۔">A private tour, arranged entirely around you.</h3>
-
-        <div class="mo-contact">
-          <div class="mo-contact-row">
-            <span class="mo-label" data-en="Call" data-ur="کال">Call</span>
-            <a href="tel:+924235844230">+92 42 3584 4230</a>
-          </div>
-          <div class="mo-contact-row">
-            <span class="mo-label" data-en="Email" data-ur="ای میل">Email</span>
-            <a href="mailto:info@tgardens.com.pk">info@tgardens.com.pk</a>
-          </div>
-          <div class="mo-contact-row">
-            <span class="mo-label" data-en="Office" data-ur="دفتر">Office</span>
-            <span data-en="12-Ahmed Block, New Garden Town, Lahore" data-ur="۱۲-احمد بلاک، نیو گارڈن ٹاؤن، لاہور">12-Ahmed Block, New Garden Town, Lahore</span>
-          </div>
-        </div>
-
-        <a href="#contact" class="btn btn-primary mo-cta" data-close-menu>
-          <span data-en="Schedule a Private Tour" data-ur="نجی دورہ طے کریں">Schedule a Private Tour</span>
-          <i class="fa-solid fa-arrow-right"></i>
-        </a>
-
-        <div class="mo-socials">
-          <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-          <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
-          <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-          <a href="https://wa.me/924235844230" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-        </div>
+    <aside class="menu-r">
+      <div class="menu-image">
+        <img src="public/gallery/08.jpg" alt="" />
+      </div>
+      <div class="menu-card">
+        <div class="menu-eyebrow"><span class="dash"></span>By Appointment</div>
+        <p class="menu-quote">A private walk through the estate — arranged around you.</p>
+        <dl class="menu-dl">
+          <dt>Call</dt><dd><a href="tel:+924235844230">+92 42 3584 4230</a></dd>
+          <dt>Email</dt><dd><a href="mailto:info@tgardens.com.pk">info@tgardens.com.pk</a></dd>
+          <dt>Office</dt><dd>12-Ahmed Block, New Garden Town, Lahore</dd>
+        </dl>
       </div>
     </aside>
   </div>
-
-  <footer class="mo-foot container">
-    <span data-en="LDA Approved · Est. Lahore · 30+ Years of Trust" data-ur="ایل ڈی اے منظور شدہ · لاہور · ۳۰ برس سے زائد اعتماد">LDA Approved · Est. Lahore · 30+ Years of Trust</span>
-    <span class="mo-lang-mirror" id="moLang">
-      <button class="lang-opt active" data-lang="en">EN</button>
-      <span class="lang-sep">·</span>
+  <footer class="menu-foot">
+    <span>LDA Approved · 30+ Years · A Family Legacy</span>
+    <span class="menu-lang">
+      <button class="lang-opt active" data-lang="en">EN</button> <em>/</em>
       <button class="lang-opt" data-lang="ur">اردو</button>
     </span>
   </footer>
 </div>
 
-<!-- HERO -->
-<section class="hero" id="home">
-  <div class="hero-bg">
-    <div class="hero-slide active" style="background-image:url('public/hero/01.jpg')"></div>
-    <div class="hero-slide" style="background-image:url('public/hero/02.jpg')"></div>
-    <div class="hero-slide" style="background-image:url('public/hero/05.jpg')"></div>
-    <div class="hero-slide" style="background-image:url('public/hero/07.jpg')"></div>
-  </div>
-  <div class="hero-veil"></div>
-  <div class="hero-grain"></div>
-
-  <div class="hero-content">
-    <div class="hero-eyebrow"><span class="line"></span> <span data-en="EST. LAHORE &nbsp;·&nbsp; LDA APPROVED" data-ur="لاہور &nbsp;·&nbsp; ایل ڈی اے منظور شدہ">EST. LAHORE &nbsp;·&nbsp; LDA APPROVED</span> <span class="line"></span></div>
-    <h1 class="hero-title" data-en-html data-ur-html='<span class="line-1">زندگی سے</span><span class="line-2"><em>بڑھ</em> کر زندگی</span>'>
-      <span class="line-1">A Life</span>
-      <span class="line-2"><em>Beyond</em> Living</span>
-    </h1>
-    <p class="hero-sub" data-en="Where architecture breathes, boulevards whisper, and every dawn arrives with the quiet luxury of home. Welcome to Tariq Gardens — Lahore's most considered address." data-ur="جہاں فنِ تعمیر سانس لیتا ہے، بلوارڈ سرگوشی کرتے ہیں، اور ہر صبح گھر کی پرسکون عیش و عشرت کے ساتھ طلوع ہوتی ہے۔ خوش آمدید طارق گارڈنز میں — لاہور کا سب سے نفیس پتہ۔">Where architecture breathes, boulevards whisper, and every dawn arrives with the quiet luxury of home. Welcome to <strong>Tariq Gardens</strong> — Lahore's most considered address.</p>
-    <div class="hero-ctas">
-      <a href="#lifestyle" class="btn btn-primary"><span data-en="Explore the Estate" data-ur="جاگیر کا جائزہ لیں">Explore the Estate</span> <i class="fa-solid fa-arrow-right"></i></a>
-      <a href="#contact" class="btn btn-ghost"><i class="fa-solid fa-calendar"></i> <span data-en="Book a Private Tour" data-ur="نجی دورہ بک کریں">Book a Private Tour</span></a>
-    </div>
-  </div>
-
-  <div class="hero-meta">
-    <div class="hero-stats">
-      <div><strong>30<span>+</span></strong><small data-en="Years Legacy" data-ur="سالوں کی میراث">Years Legacy</small></div>
-      <div><strong>100<span>%</span></strong><small data-en="LDA Approved" data-ur="ایل ڈی اے منظور">LDA Approved</small></div>
-      <div><strong>24<span>/7</span></strong><small data-en="Gated Security" data-ur="چوبیس گھنٹے سیکیورٹی">Gated Security</small></div>
-      <div><strong>8<span>+</span></strong><small data-en="Signature Amenities" data-ur="سگنیچر سہولیات">Signature Amenities</small></div>
-    </div>
-    <div class="hero-scroll"><span></span> <em data-en="Scroll to discover" data-ur="دریافت کے لیے نیچے جائیں">Scroll to discover</em></div>
-  </div>
-
-  <div class="hero-slide-nav">
-    <button class="dot active" data-slide="0"></button>
-    <button class="dot" data-slide="1"></button>
-    <button class="dot" data-slide="2"></button>
-    <button class="dot" data-slide="3"></button>
-  </div>
-</section>
-
-<!-- LOGO MARQUEE / VALUE BAND -->
-<section class="value-band">
-  <div class="vb-item"><i class="fa-solid fa-mosque"></i><span data-en="Grand Jamia Masjid" data-ur="جامع مسجد">Grand Jamia Masjid</span></div>
-  <div class="vb-sep"></div>
-  <div class="vb-item"><i class="fa-solid fa-tree-city"></i><span data-en="Landscaped Parks" data-ur="سرسبز پارکس">Landscaped Parks</span></div>
-  <div class="vb-sep"></div>
-  <div class="vb-item"><i class="fa-solid fa-road"></i><span data-en="Wide Carpeted Roads" data-ur="کشادہ کارپٹڈ سڑکیں">Wide Carpeted Roads</span></div>
-  <div class="vb-sep"></div>
-  <div class="vb-item"><i class="fa-solid fa-school"></i><span data-en="School &amp; Hospital" data-ur="اسکول و ہسپتال">School &amp; Hospital</span></div>
-  <div class="vb-sep"></div>
-  <div class="vb-item"><i class="fa-solid fa-bolt"></i><span data-en="Independent Feeder" data-ur="خودمختار فیڈر">Independent Feeder</span></div>
-  <div class="vb-sep"></div>
-  <div class="vb-item"><i class="fa-solid fa-droplet"></i><span data-en="Pure Water Supply" data-ur="صاف پانی کی فراہمی">Pure Water Supply</span></div>
-</section>
-
-<!-- STORY / ABOUT -->
-<section class="story" id="story">
-  <div class="container story-grid">
-    <div class="story-media">
-      <div class="story-img-1" style="background-image:url('public/hero/02.jpg')"></div>
-      <div class="story-img-2" style="background-image:url('public/gallery/06.jpg')"></div>
-      <div class="story-badge">
-        <div class="badge-num">Since</div>
-        <div class="badge-year">1992</div>
-        <div class="badge-sub">A Legacy of Excellence</div>
+<!-- ═══════════════════════ HERO ═══════════════════════ -->
+<section class="hero" id="top">
+  <!-- Left: editorial -->
+  <div class="hero-l">
+    <div class="hero-top">
+      <div class="hero-crumb"><span class="dot"></span>LDA Approved · Since 1992</div>
+      <div class="hero-coords">
+        <span>31.42°N</span><span class="bar"></span>
+        <span>74.25°E</span><span class="bar"></span>
+        <span>Lahore, PK</span>
       </div>
     </div>
-    <div class="story-copy">
-      <div class="eyebrow"><span></span><em data-en="Our Story" data-ur="ہماری داستان">Our Story</em></div>
-      <h2 class="section-title" data-en="Where Lahore's most discerning families call home." data-ur-html='لاہور کے نفیس ترین خاندان جہاں <em>گھر</em> کہتے ہیں۔'>Where Lahore's most discerning families call home.</h2>
-      <p class="lead" data-en="Born from a vision to redefine urban living, Tariq Gardens Housing Scheme rose quietly on the outskirts of Lahore — a sanctuary where modern infrastructure meets timeless tranquility." data-ur="شہری زندگی کی نئی تعبیر کے خواب سے جنم لینے والا، طارق گارڈنز ہاؤسنگ اسکیم لاہور کے کنارے پر خاموشی سے ابھرا — ایک پناہ گاہ جہاں جدید انفرااسٹرکچر لازوال سکون سے ملتا ہے۔">Born from a vision to redefine urban living, Tariq Gardens Housing Scheme rose quietly on the outskirts of Lahore — a sanctuary where modern infrastructure meets timeless tranquility.</p>
-      <p data-en="Developed on the guidelines of the LDA and shaped by the foresight of master planners, the community is woven into the landscape with purpose. Wide boulevards, generous parks, and thoughtfully zoned residences create a rhythm of life that is unhurried, considered, and deeply rooted." data-ur="ایل ڈی اے کی ہدایات پر تیار کیا گیا اور ماسٹر پلانرز کی دوراندیشی سے تراشا گیا، یہ برادری مقصد کے ساتھ منظر نامے میں بُنی گئی ہے۔ کشادہ بلوارڈ، فراخ پارکس، اور سوچے سمجھے زون میں تقسیم رہائش گاہیں ایک ایسی زندگی کی تال پیدا کرتی ہیں جو بے حجاب، سنجیدہ اور گہرائی سے جڑی ہوئی ہے۔">Developed on the guidelines of the LDA and shaped by the foresight of master planners, the community is woven into the landscape with purpose. Wide boulevards, generous parks, and thoughtfully zoned residences create a rhythm of life that is unhurried, considered, and deeply rooted.</p>
-      <p data-en="More than a housing scheme — it is a state-of-the-art neighbourhood where neighbours become family and every evening feels earned." data-ur="ایک ہاؤسنگ اسکیم سے کہیں بڑھ کر — یہ ایک جدید ترین محلہ ہے جہاں پڑوسی خاندان بنتے ہیں اور ہر شام مستحق محسوس ہوتی ہے۔">More than a housing scheme — it is a state-of-the-art neighbourhood where neighbours become family and every evening feels earned.</p>
-      <div class="story-pillars">
-        <div><i class="fa-solid fa-leaf"></i><strong data-en="Naturally Landscaped" data-ur="قدرتی طور پر سجا سنورا">Naturally Landscaped</strong><span data-en="Gardens in every block" data-ur="ہر بلاک میں باغ">Gardens in every block</span></div>
-        <div><i class="fa-solid fa-compass"></i><strong data-en="Master Planned" data-ur="ماسٹر پلاننگ">Master Planned</strong><span data-en="LDA approved layout" data-ur="ایل ڈی اے منظور شدہ نقشہ">LDA approved layout</span></div>
-        <div><i class="fa-solid fa-handshake"></i><strong data-en="Family-First" data-ur="خاندان سب سے پہلے">Family-First</strong><span data-en="Three generations of trust" data-ur="تین نسلوں کا اعتماد">Three generations of trust</span></div>
+
+    <div class="hero-body">
+      <div class="hero-eyebrow split" data-split="— An estate of boulevards, gardens, and enduring craft">
+        <span>— An estate of boulevards, gardens, and enduring craft</span>
       </div>
-      <a href="#leadership" class="link-arrow"><span data-en="Meet the Family Behind It" data-ur="اس کے پیچھے کے خاندان سے ملیں">Meet the Family Behind It</span> <i class="fa-solid fa-arrow-right"></i></a>
+
+      <h1 class="hero-h">
+        <span class="line"><span class="lw">A thirty-year</span></span>
+        <span class="line"><span class="lw"><em>story</em> in</span></span>
+        <span class="line"><span class="lw">seventeen blocks.</span></span>
+      </h1>
+
+      <div class="hero-foot">
+        <p class="hero-lede">
+          Tariq Gardens Housing Scheme is not a new development.
+          It is a quiet, confident neighbourhood drawn on LDA guidelines,
+          carried by one family across three generations, and trusted
+          by a thousand more.
+        </p>
+
+        <div class="hero-cta">
+          <a href="#chapter-01" class="btn-primary magnet" data-cursor="explore">
+            <span>Walk the Estate</span>
+            <i>→</i>
+          </a>
+          <a href="#visit" class="btn-ghost" data-cursor="visit">
+            <span>Request a Viewing</span>
+          </a>
+        </div>
+
+        <div class="hero-marks">
+          <div><span class="k">30<sub>+</sub></span><span class="v">Years</span></div>
+          <div><span class="k">17</span><span class="v">Blocks</span></div>
+          <div><span class="k">1,200<sub>+</sub></span><span class="v">Residents</span></div>
+          <div><span class="k">100<sub>%</sub></span><span class="v">LDA Approved</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-foot-bar">
+      <span class="hfb-label">Scroll to enter</span>
+      <span class="hfb-line"></span>
+    </div>
+  </div>
+
+  <!-- Right: cinematic image carousel -->
+  <div class="hero-r">
+    <div class="hero-stage" id="heroStage">
+      <div class="hs-slide active" data-idx="0"><img src="public/hero/01.jpg" alt="" /></div>
+      <div class="hs-slide" data-idx="1"><img src="public/hero/05.jpg" alt="" /></div>
+      <div class="hs-slide" data-idx="2"><img src="public/hero/07.jpg" alt="" /></div>
+      <div class="hs-slide" data-idx="3"><img src="public/hero/02.jpg" alt="" /></div>
+    </div>
+    <div class="hero-chrome">
+      <div class="hs-caption">
+        <span class="hsc-n">01</span>
+        <span class="hsc-sep">/</span>
+        <span class="hsc-t">04</span>
+      </div>
+      <div class="hs-progress" id="hsProgress"><span></span></div>
+      <div class="hs-title" id="hsTitle">Main Boulevard · Entrance</div>
+    </div>
+    <div class="hero-logo-emboss">
+      <img src="public/logo.png" alt="" />
     </div>
   </div>
 </section>
 
-<!-- LIFESTYLE IMMERSIVE -->
-<section class="lifestyle" id="lifestyle">
-  <div class="container">
-    <div class="section-head">
-      <div class="eyebrow center"><span></span><em data-en="Lifestyle" data-ur="طرزِ زندگی">Lifestyle</em><span></span></div>
-      <h2 class="section-title center" data-en-html='The art of living, <em>quietly perfected.</em>' data-ur-html='فنِ زیست، <em>خاموشی سے کمال پر۔</em>'>The art of living, <em>quietly perfected.</em></h2>
-      <p class="section-sub" data-en="Morning walks through jogging trails. Sunset prayers at the grand masjid. Laughter rising from tree-lined parks. Every hour here has been composed." data-ur="جوگنگ ٹریکس پر صبح کی چہل قدمی۔ جامع مسجد میں غروبِ آفتاب کی نمازیں۔ درختوں سے ڈھکے پارکوں سے بلند ہوتی ہنسی۔ یہاں ہر گھڑی ترتیب دی گئی ہے۔">Morning walks through jogging trails. Sunset prayers at the grand masjid. Laughter rising from tree-lined parks. Every hour here has been composed.</p>
+<!-- ═══════════════════════ BANNER ═══════════════════════ -->
+<section class="banner">
+  <div class="banner-track">
+    <div class="banner-set">
+      <span class="bt">Security</span><span class="x">·</span>
+      <span class="bt">Prosperity</span><span class="x">·</span>
+      <span class="bt">Quality</span><span class="x">·</span>
+      <span class="bt">Masjid</span><span class="x">·</span>
+      <span class="bt">Gardens</span><span class="x">·</span>
+      <span class="bt">Boulevards</span><span class="x">·</span>
+      <span class="bt">Schools</span><span class="x">·</span>
+      <span class="bt">Community</span><span class="x">·</span>
     </div>
-
-    <div class="life-grid">
-      <article class="life-card tall" style="background-image:url('public/gallery/01.jpg')">
-        <div class="life-meta">
-          <span data-en="01 — Dawn" data-ur="۰۱ — سحر">01 — Dawn</span>
-          <h3 data-en="Awaken to serenity" data-ur="سکون کے ساتھ بیدار ہوں">Awaken to serenity</h3>
-          <p data-en="Birdsong, soft mist over manicured lawns, and boulevards wide enough to let the morning breathe." data-ur="پرندوں کی چہچہاہٹ، سجی سنوری گھاس پر ہلکی دھند، اور اتنے کشادہ بلوارڈ کہ صبح سانس لے سکے۔">Birdsong, soft mist over manicured lawns, and boulevards wide enough to let the morning breathe.</p>
-        </div>
-      </article>
-      <article class="life-card" style="background-image:url('public/gallery/04.jpg')">
-        <div class="life-meta">
-          <span data-en="02 — Noon" data-ur="۰۲ — دوپہر">02 — Noon</span>
-          <h3 data-en="A community that moves together" data-ur="ایک برادری جو ساتھ چلتی ہے">A community that moves together</h3>
-          <p data-en="Parks in every block, jogging tracks, and children's play areas shaded by generous canopies." data-ur="ہر بلاک میں پارک، جوگنگ ٹریکس، اور گھنے سائے والے بچوں کے کھیلنے کی جگہیں۔">Parks in every block, jogging tracks, and children's play areas shaded by generous canopies.</p>
-        </div>
-      </article>
-      <article class="life-card" style="background-image:url('public/gallery/08.jpg')">
-        <div class="life-meta">
-          <span data-en="03 — Dusk" data-ur="۰۳ — شام">03 — Dusk</span>
-          <h3 data-en="Golden hour, every hour" data-ur="ہر گھڑی سنہری ساعت">Golden hour, every hour</h3>
-          <p data-en="Street lamps glow along carpeted avenues as families gather for the evening adhaan." data-ur="کارپٹڈ سڑکوں پر اسٹریٹ لیمپ جگمگاتے ہیں جب خاندان شام کی اذان کے لیے جمع ہوتے ہیں۔">Street lamps glow along carpeted avenues as families gather for the evening adhaan.</p>
-        </div>
-      </article>
-      <article class="life-card wide" style="background-image:url('public/gallery/12.jpg')">
-        <div class="life-meta">
-          <span data-en="04 — Night" data-ur="۰۴ — رات">04 — Night</span>
-          <h3 data-en="Rest, protected." data-ur="محفوظ سکون۔">Rest, protected.</h3>
-          <p data-en="Gated. Monitored. Illuminated. Uninterrupted peace — by design." data-ur="گیٹڈ۔ نگرانی میں۔ روشن۔ بلا تعطل سکون — ارادتاً۔">Gated. Monitored. Illuminated. Uninterrupted peace — by design.</p>
-        </div>
-      </article>
+    <div class="banner-set" aria-hidden="true">
+      <span class="bt">Security</span><span class="x">·</span>
+      <span class="bt">Prosperity</span><span class="x">·</span>
+      <span class="bt">Quality</span><span class="x">·</span>
+      <span class="bt">Masjid</span><span class="x">·</span>
+      <span class="bt">Gardens</span><span class="x">·</span>
+      <span class="bt">Boulevards</span><span class="x">·</span>
+      <span class="bt">Schools</span><span class="x">·</span>
+      <span class="bt">Community</span><span class="x">·</span>
     </div>
   </div>
 </section>
 
-<!-- AMENITIES -->
-<section class="amenities" id="amenities">
-  <div class="container">
-    <div class="section-head">
-      <div class="eyebrow center"><span></span><em data-en="The Amenities" data-ur="سہولیات">The Amenities</em><span></span></div>
-      <h2 class="section-title center" data-en-html='Everything considered. <em>Nothing compromised.</em>' data-ur-html='ہر چیز سوچی سمجھی۔ <em>کوئی سمجھوتہ نہیں۔</em>'>Everything considered. <em>Nothing compromised.</em></h2>
-      <p class="section-sub" data-en="Eight signature amenities, one uncompromising standard. Each feature of Tariq Gardens has been engineered for longevity, designed for beauty, and intended for you." data-ur="آٹھ سگنیچر سہولیات، ایک بے مثال معیار۔ طارق گارڈنز کی ہر خصوصیت دیرپا پائیداری کے لیے بنائی گئی، خوبصورتی کے لیے ڈیزائن کی گئی، اور آپ کے لیے۔">Eight signature amenities, one uncompromising standard. Each feature of Tariq Gardens has been engineered for longevity, designed for beauty, and intended for you.</p>
+<!-- ═══════════════════════ CHAPTER 01 : THE ESTATE ═══════════════════════ -->
+<section class="ch ch-estate" id="chapter-01">
+  <div class="cont">
+
+    <div class="ch-head">
+      <div class="ch-num">Chapter 01</div>
+      <h2 class="ch-title split" data-split="The estate, in a single breath.">
+        <span>The estate,<br/>in a single <em>breath.</em></span>
+      </h2>
     </div>
 
-    <div class="amenity-grid">
-      <div class="amenity" data-num="01">
-        <div class="amenity-icon"><i class="fa-solid fa-mosque"></i></div>
-        <h3 data-en="Grand Jamia Masjid" data-ur="شاندار جامع مسجد">Grand Jamia Masjid</h3>
-        <p data-en="A state-of-the-art masjid crowning the community — serving residents and the neighbouring societies alike." data-ur="برادری کی شان — ایک جدید ترین مسجد جو رہائشیوں اور ارد گرد کی سوسائٹیوں دونوں کی خدمت کرتی ہے۔">A state-of-the-art masjid crowning the community — serving residents and the neighbouring societies alike.</p>
-        <span class="amenity-tag" data-en="Spiritual Anchor" data-ur="روحانی مرکز">Spiritual Anchor</span>
+    <div class="story-grid">
+      <div class="story-l sticky-col">
+        <p class="story-lede">
+          We began in <em>1992</em> — not with brochures, but with blueprints drawn
+          by the hand of a father and the patience of a decade.
+        </p>
+        <p class="story-body">
+          Thirty years and seventeen blocks later, Tariq Gardens has become one
+          of Lahore's quiet institutions. Not the loudest housing scheme. Not
+          the showiest. Simply the one where residents stay, and their children
+          return to raise their own.
+        </p>
+        <p class="story-body">
+          An LDA-approved master plan. A water network fed by twin tube-wells.
+          A jamia masjid of state-of-the-art craft. A park in every block. And
+          families who still say salaam when they pass.
+        </p>
+
+        <div class="story-sign">
+          <span class="ss-line"></span>
+          <span class="ss-label">The Tariq Family</span>
+        </div>
       </div>
-      <div class="amenity" data-num="02">
-        <div class="amenity-icon"><i class="fa-solid fa-droplet"></i></div>
-        <h3 data-en="Pure Water Supply" data-ur="خالص پانی کی فراہمی">Pure Water Supply</h3>
-        <p data-en="An independent distribution network fed by twin tube-wells and an overhead reservoir — clean water, always." data-ur="دو ٹیوب ویل اور اوور ہیڈ ذخائر سے منسلک خودمختار نیٹ ورک — ہمیشہ صاف پانی۔">An independent distribution network fed by twin tube-wells and an overhead reservoir — clean water, always.</p>
-        <span class="amenity-tag" data-en="Engineered" data-ur="انجینئرڈ">Engineered</span>
-      </div>
-      <div class="amenity" data-num="03">
-        <div class="amenity-icon"><i class="fa-solid fa-recycle"></i></div>
-        <h3 data-en="Advanced Sewerage" data-ur="جدید سیوریج">Advanced Sewerage</h3>
-        <p data-en="A hygienic sewerage network connected to a dedicated disposal plant — complete drainage and sanitation." data-ur="ایک صحت مند سیوریج نیٹ ورک، مخصوص ڈسپوزل پلانٹ سے منسلک — مکمل نکاسی اور صفائی۔">A hygienic sewerage network connected to a dedicated disposal plant — complete drainage and sanitation.</p>
-        <span class="amenity-tag" data-en="Sustainable" data-ur="پائیدار">Sustainable</span>
-      </div>
-      <div class="amenity" data-num="04">
-        <div class="amenity-icon"><i class="fa-solid fa-fire-flame-simple"></i></div>
-        <h3 data-en="Sui Gas Network" data-ur="سوئی گیس نیٹ ورک">Sui Gas Network</h3>
-        <p data-en="Seamless domestic gas provision across all residential zones, with capacity allocated for commercial use." data-ur="تمام رہائشی علاقوں میں بلا تعطل گھریلو گیس کی فراہمی، تجارتی استعمال کے لیے بھی گنجائش۔">Seamless domestic gas provision across all residential zones, with capacity allocated for commercial use.</p>
-        <span class="amenity-tag" data-en="Reliable" data-ur="قابلِ اعتماد">Reliable</span>
-      </div>
-      <div class="amenity" data-num="05">
-        <div class="amenity-icon"><i class="fa-solid fa-road"></i></div>
-        <h3 data-en="Wide Carpeted Roads" data-ur="کشادہ کارپٹڈ سڑکیں">Wide Carpeted Roads</h3>
-        <p data-en="Generous 60ft and 100ft boulevards, carpeted and bordered by footpaths for an unhurried stride." data-ur="۶۰ فٹ اور ۱۰۰ فٹ کشادہ بلوارڈ، کارپٹڈ اور پیدل چلنے والوں کے لیے فٹ پاتھ سے مزین۔">Generous 60ft and 100ft boulevards, carpeted and bordered by footpaths for an unhurried stride.</p>
-        <span class="amenity-tag" data-en="Walkable" data-ur="پیدل موزوں">Walkable</span>
-      </div>
-      <div class="amenity" data-num="06">
-        <div class="amenity-icon"><i class="fa-solid fa-tree"></i></div>
-        <h3 data-en="A Park in Every Block" data-ur="ہر بلاک میں پارک">A Park in Every Block</h3>
-        <p data-en="Landscaped parks with jogging and walking tracks designed around the lives of residents." data-ur="رہائشیوں کی زندگیوں کے گرد ڈیزائن کیے گئے سرسبز پارک، جوگنگ اور چہل قدمی کے ٹریکس کے ساتھ۔">Landscaped parks with jogging and walking tracks designed around the lives of residents.</p>
-        <span class="amenity-tag" data-en="Green" data-ur="سرسبز">Green</span>
-      </div>
-      <div class="amenity" data-num="07">
-        <div class="amenity-icon"><i class="fa-solid fa-bolt"></i></div>
-        <h3 data-en="Independent Electricity" data-ur="خودمختار بجلی">Independent Electricity</h3>
-        <p data-en="Powered via a dedicated feeder and luminous street lamps lining every road." data-ur="ایک مخصوص فیڈر سے بجلی اور ہر سڑک پر روشن اسٹریٹ لیمپ۔">Powered via a dedicated feeder and luminous street lamps lining every road.</p>
-        <span class="amenity-tag" data-en="Uninterrupted" data-ur="بلا تعطل">Uninterrupted</span>
-      </div>
-      <div class="amenity" data-num="08">
-        <div class="amenity-icon"><i class="fa-solid fa-hospital"></i></div>
-        <h3 data-en="School, Hospital &amp; Marriage Lawn" data-ur="اسکول، ہسپتال و شادی ہال">School, Hospital &amp; Marriage Lawn</h3>
-        <p data-en="Demarcated zones for education, healthcare, and celebrations — the village inside a city." data-ur="تعلیم، صحت اور تقریبات کے لیے مختص علاقے — شہر کے اندر ایک گاؤں۔">Demarcated zones for education, healthcare, and celebrations — the village inside a city.</p>
-        <span class="amenity-tag" data-en="Holistic" data-ur="جامع">Holistic</span>
+
+      <div class="story-r">
+        <figure class="sf sf-1 tilt" data-tilt>
+          <img src="public/gallery/06.jpg" alt="" />
+          <figcaption>Main Boulevard</figcaption>
+        </figure>
+        <figure class="sf sf-2 tilt" data-tilt>
+          <img src="public/hero/02.jpg" alt="" />
+          <figcaption>Community Gardens</figcaption>
+        </figure>
+        <figure class="sf sf-3 tilt" data-tilt>
+          <img src="public/gallery/12.jpg" alt="" />
+          <figcaption>Evening light, Block C</figcaption>
+        </figure>
       </div>
     </div>
 
-    <div class="amenity-extras">
-      <h3 class="mini-title" data-en="And a few more quiet privileges…" data-ur="اور چند مزید پرسکون اعزازات…">And a few more quiet privileges…</h3>
-      <div class="extras-row">
-        <span><i class="fa-solid fa-video"></i><em data-en="CCTV Surveillance" data-ur="سی سی ٹی وی نگرانی">CCTV Surveillance</em></span>
-        <span><i class="fa-solid fa-shield-halved"></i><em data-en="24/7 Gated Security" data-ur="چوبیس گھنٹے سیکیورٹی">24/7 Gated Security</em></span>
-        <span><i class="fa-solid fa-store"></i><em data-en="Commercial Avenue" data-ur="تجارتی ایونیو">Commercial Avenue</em></span>
-        <span><i class="fa-solid fa-child"></i><em data-en="Kids' Play Zones" data-ur="بچوں کی کھیل کی جگہیں">Kids' Play Zones</em></span>
-        <span><i class="fa-solid fa-dumbbell"></i><em data-en="Community Gym" data-ur="کمیونٹی جم">Community Gym</em></span>
-        <span><i class="fa-solid fa-basketball"></i><em data-en="Sports Courts" data-ur="اسپورٹس کورٹس">Sports Courts</em></span>
-        <span><i class="fa-solid fa-wifi"></i><em data-en="Fiber Optic Ready" data-ur="فائبر آپٹک تیار">Fiber Optic Ready</em></span>
-        <span><i class="fa-solid fa-truck"></i><em data-en="Waste Management" data-ur="کچرا بندوبست">Waste Management</em></span>
-      </div>
+    <!-- Feature strip -->
+    <div class="feature-strip">
+      <div class="fs-item"><span class="fsn">17</span><span class="fsl">Residential<br/>Blocks</span></div>
+      <div class="fs-item"><span class="fsn">100ft</span><span class="fsl">Main<br/>Boulevard</span></div>
+      <div class="fs-item"><span class="fsn">60ft</span><span class="fsl">Carpeted<br/>Streets</span></div>
+      <div class="fs-item"><span class="fsn">02</span><span class="fsl">Tube Wells<br/>+ Reservoir</span></div>
+      <div class="fs-item"><span class="fsn">∞</span><span class="fsl">Green<br/>Belts</span></div>
     </div>
   </div>
 </section>
 
-<!-- STATS SPLIT -->
-<section class="counter-band">
-  <div class="counter-bg" style="background-image:url('public/hero/04.jpg')"></div>
-  <div class="counter-veil"></div>
-  <div class="container counter-grid">
-    <div class="counter"><div class="num" data-count="30">0</div><span data-en="Years of Legacy" data-ur="سالہ میراث">Years of Legacy</span></div>
-    <div class="counter"><div class="num" data-count="1200">0</div><span data-en="Proud Residents" data-ur="فخریہ رہائشی">Proud Residents</span></div>
-    <div class="counter"><div class="num" data-count="8">0</div><span data-en="Signature Amenities" data-ur="سگنیچر سہولیات">Signature Amenities</span></div>
-    <div class="counter"><div class="num" data-count="100" data-suffix="%">0</div><span data-en="LDA Approved" data-ur="ایل ڈی اے منظور">LDA Approved</span></div>
-  </div>
-</section>
-
-<!-- MASTER PLAN / MAPS -->
-<section class="masterplan" id="masterplan">
-  <div class="container">
-    <div class="section-head">
-      <div class="eyebrow center"><span></span><em data-en="Master Plan &amp; Location" data-ur="جامع منصوبہ و محلِ وقوع">Master Plan &amp; Location</em><span></span></div>
-      <h2 class="section-title center" data-en-html='A community, <em>carefully drawn.</em>' data-ur-html='ایک برادری، <em>سوچ سمجھ کر ترتیب دی گئی۔</em>'>A community, <em>carefully drawn.</em></h2>
-      <p class="section-sub" data-en="Every plot, park, and passage was charted before a single stone was laid. Explore the blueprint and the backdrop that make Tariq Gardens unmistakable." data-ur="ایک پتھر رکھے جانے سے پہلے ہر پلاٹ، پارک اور گزرگاہ کا خاکہ بنایا گیا۔ وہ نقشہ اور پس منظر دیکھیے جو طارق گارڈنز کو منفرد بناتے ہیں۔">Every plot, park, and passage was charted before a single stone was laid. Explore the blueprint and the backdrop that make Tariq Gardens unmistakable.</p>
+<!-- ═══════════════════════ CHAPTER 02 : MASTER PLAN ═══════════════════════ -->
+<section class="ch ch-plan" id="chapter-02">
+  <div class="cont">
+    <div class="ch-head right">
+      <div class="ch-num">Chapter 02</div>
+      <h2 class="ch-title split" data-split="A plan worth keeping.">
+        <span>A plan<br/><em>worth</em> keeping.</span>
+      </h2>
     </div>
 
-    <div class="map-grid">
-      <a class="map-card" href="public/maps/site.jpg" target="_blank">
-        <div class="map-img" style="background-image:url('public/maps/site.jpg')"></div>
-        <div class="map-body">
-          <div class="map-tag" data-en="Site Map" data-ur="سائٹ میپ">Site Map</div>
-          <h3 data-en="The blueprint of calm." data-ur="سکون کا نقشہ۔">The blueprint of calm.</h3>
-          <p data-en="Boulevards, blocks, parks, and public amenities — thoughtfully arranged." data-ur="بلوارڈ، بلاکس، پارکس اور عوامی سہولیات — سوچ سمجھ کر ترتیب دی گئیں۔">Boulevards, blocks, parks, and public amenities — thoughtfully arranged.</p>
-          <span class="link-arrow small"><em data-en="View Full Map" data-ur="مکمل نقشہ دیکھیں">View Full Map</em> <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
-        </div>
-      </a>
-      <a class="map-card" href="public/maps/location.jpg" target="_blank">
-        <div class="map-img" style="background-image:url('public/maps/location.jpg')"></div>
-        <div class="map-body">
-          <div class="map-tag" data-en="Location" data-ur="محلِ وقوع">Location</div>
-          <h3 data-en="Just minutes from the city's heart." data-ur="شہر کے دل سے چند منٹ کی مسافت پر۔">Just minutes from the city's heart.</h3>
-          <p data-en="Nestled among Lahore's most established addresses — connected, yet cocooned." data-ur="لاہور کے سب سے قائم پتوں کے درمیان — جڑا ہوا، لیکن پرسکون۔">Nestled among Lahore's most established addresses — connected, yet cocooned.</p>
-          <span class="link-arrow small"><em data-en="View Full Map" data-ur="مکمل نقشہ دیکھیں">View Full Map</em> <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
-        </div>
-      </a>
-    </div>
+    <div class="plan-grid">
+      <div class="plan-l">
+        <p class="plan-lede">
+          Every boulevard, every plot, every tree — charted before a single
+          stone was laid. The blueprint of calm, still in print three decades on.
+        </p>
 
-    <div class="mp-live">
-      <div class="mp-live-map">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6809.619661071186!2d74.24898277710543!3d31.419365181345484!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391901ad5f97644d%3A0x896b98321987f17b!2sTariq+Garden%2C+Lahore%2C+Pakistan!5e0!3m2!1sen!2s!4v1516876338971" loading="lazy" allowfullscreen></iframe>
-      </div>
-      <div class="mp-live-info">
-        <h3 data-en="The Address" data-ur="پتہ">The Address</h3>
-        <p><i class="fa-solid fa-location-dot"></i> <span data-en="Tariq Gardens Housing Scheme" data-ur="طارق گارڈنز ہاؤسنگ اسکیم">Tariq Gardens Housing Scheme</span><br/><span data-en="Lahore, Punjab, Pakistan" data-ur="لاہور، پنجاب، پاکستان">Lahore, Punjab, Pakistan</span></p>
-        <h4 data-en="Connectivity" data-ur="رسائی">Connectivity</h4>
-        <ul class="connect">
-          <li><span data-en="Lahore Ring Road" data-ur="لاہور رنگ روڈ">Lahore Ring Road</span><em data-en="15 min" data-ur="۱۵ منٹ">15 min</em></li>
-          <li><span data-en="Motorway M-2" data-ur="موٹروے ایم-۲">Motorway M-2</span><em data-en="20 min" data-ur="۲۰ منٹ">20 min</em></li>
-          <li><span data-en="Allama Iqbal Airport" data-ur="علامہ اقبال ایئرپورٹ">Allama Iqbal Airport</span><em data-en="35 min" data-ur="۳۵ منٹ">35 min</em></li>
-          <li><span data-en="Gulberg / City Centre" data-ur="گلبرگ / شہر کا مرکز">Gulberg / City Centre</span><em data-en="25 min" data-ur="۲۵ منٹ">25 min</em></li>
-          <li><span data-en="Thokar Niaz Baig" data-ur="ٹھوکر نیاز بیگ">Thokar Niaz Baig</span><em data-en="12 min" data-ur="۱۲ منٹ">12 min</em></li>
+        <ul class="plan-list">
+          <li>
+            <span class="pl-n">01</span>
+            <div><h4>Master layout, LDA guidelines.</h4>
+              <p>Zoning, circulation, and density composed at the scale of the family and the city, simultaneously.</p>
+            </div>
+          </li>
+          <li>
+            <span class="pl-n">02</span>
+            <div><h4>60 ft &amp; 100 ft boulevards.</h4>
+              <p>Carpeted, lined with footpaths, and maintained by an estate team that remembers you by name.</p>
+            </div>
+          </li>
+          <li>
+            <span class="pl-n">03</span>
+            <div><h4>A park in every block.</h4>
+              <p>Jogging tracks, play spaces, old-growth trees. Seventeen parks, one community.</p>
+            </div>
+          </li>
+          <li>
+            <span class="pl-n">04</span>
+            <div><h4>Utilities, independent.</h4>
+              <p>Dedicated feeder, twin tube-wells, disposal plant, sui-gas — the infrastructure of daily life, quietly engineered for permanence.</p>
+            </div>
+          </li>
         </ul>
-        <a href="#contact" class="btn btn-dark"><span data-en="Request Directions" data-ur="راستہ طلب کریں">Request Directions</span> <i class="fa-solid fa-arrow-right"></i></a>
+
+        <div class="plan-ctas">
+          <a href="public/maps/site.jpg" target="_blank" class="btn-outline" data-cursor="open">
+            <span>Download Site Map</span><i>↗</i>
+          </a>
+          <a href="public/maps/location.jpg" target="_blank" class="btn-ghost" data-cursor="open">
+            <span>View Location Map</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="plan-r">
+        <div class="plan-map tilt" data-tilt>
+          <img src="public/maps/site.jpg" alt="Tariq Gardens Site Map" />
+          <div class="pm-hot pmh-1"><span>A</span><em>Main Entrance</em></div>
+          <div class="pm-hot pmh-2"><span>B</span><em>Jamia Masjid</em></div>
+          <div class="pm-hot pmh-3"><span>C</span><em>Block B Park</em></div>
+          <div class="pm-hot pmh-4"><span>D</span><em>Commercial</em></div>
+        </div>
+
+        <div class="plan-live">
+          <div class="pl-frame">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6809.619661071186!2d74.24898277710543!3d31.419365181345484!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391901ad5f97644d%3A0x896b98321987f17b!2sTariq+Garden%2C+Lahore%2C+Pakistan!5e0!3m2!1sen!2s!4v1516876338971" loading="lazy" allowfullscreen></iframe>
+          </div>
+          <dl class="pl-conn">
+            <div><dt>Ring Road</dt><dd><span class="pl-bar" style="--p:80%"></span>15 min</dd></div>
+            <div><dt>Motorway M-2</dt><dd><span class="pl-bar" style="--p:70%"></span>20 min</dd></div>
+            <div><dt>Airport</dt><dd><span class="pl-bar" style="--p:50%"></span>35 min</dd></div>
+            <div><dt>Gulberg</dt><dd><span class="pl-bar" style="--p:60%"></span>25 min</dd></div>
+            <div><dt>Thokar Niaz Baig</dt><dd><span class="pl-bar" style="--p:85%"></span>12 min</dd></div>
+          </dl>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- PARALLAX BREAK -->
-<section class="parallax-break" style="background-image:url('public/hero/07.jpg')">
-  <div class="pb-veil"></div>
-  <div class="container pb-content">
-    <div class="pb-quote-mark">“</div>
-    <p class="pb-quote" data-en-html='Luxury is not a possession. It is the quiet assurance that every detail has been <em>taken care of.</em>' data-ur-html='عیش و عشرت کوئی ملکیت نہیں۔ یہ وہ پرسکون یقین ہے کہ ہر تفصیل کا <em>خیال رکھا گیا ہے۔</em>'>Luxury is not a possession. It is the quiet assurance that every detail has been <em>taken care of.</em></p>
-    <div class="pb-author" data-en="— The Tariq Gardens Promise" data-ur="— طارق گارڈنز کا وعدہ">— The Tariq Gardens Promise</div>
+<!-- ═══════════════════════ CHAPTER 03 : AMENITIES ═══════════════════════ -->
+<section class="ch ch-amen" id="chapter-03">
+  <div class="cont">
+    <div class="ch-head center">
+      <div class="ch-num">Chapter 03</div>
+      <h2 class="ch-title split" data-split="Everything considered.">
+        <span>Everything <em>considered.</em></span>
+      </h2>
+    </div>
+
+    <div class="amen-list">
+      <article class="am">
+        <div class="am-n">01</div>
+        <div class="am-body">
+          <h3>Grand Jamia Masjid</h3>
+          <p>A state-of-the-art masjid crowning the estate, serving residents and the surrounding societies alike.</p>
+        </div>
+        <div class="am-img"><img src="public/gallery/22.jpg" alt="" /></div>
+      </article>
+      <article class="am">
+        <div class="am-n">02</div>
+        <div class="am-body">
+          <h3>Pure Water Supply</h3>
+          <p>Independent distribution fed by twin tube-wells and an overhead reservoir — clean water, always.</p>
+        </div>
+        <div class="am-img"><img src="public/gallery/13.jpg" alt="" /></div>
+      </article>
+      <article class="am">
+        <div class="am-n">03</div>
+        <div class="am-body">
+          <h3>Advanced Sewerage</h3>
+          <p>A hygienic network connected to a dedicated disposal plant — complete drainage and sanitation.</p>
+        </div>
+        <div class="am-img"><img src="public/gallery/18.jpg" alt="" /></div>
+      </article>
+      <article class="am">
+        <div class="am-n">04</div>
+        <div class="am-body">
+          <h3>Sui-Gas Network</h3>
+          <p>Seamless domestic gas provision across residential zones, with capacity allocated for commercial use.</p>
+        </div>
+        <div class="am-img"><img src="public/gallery/28.jpg" alt="" /></div>
+      </article>
+      <article class="am">
+        <div class="am-n">05</div>
+        <div class="am-body">
+          <h3>Wide Carpeted Roads</h3>
+          <p>Generous 60 ft and 100 ft boulevards, carpeted and bordered by footpaths for an unhurried stride.</p>
+        </div>
+        <div class="am-img"><img src="public/gallery/04.jpg" alt="" /></div>
+      </article>
+      <article class="am">
+        <div class="am-n">06</div>
+        <div class="am-body">
+          <h3>A Park in Every Block</h3>
+          <p>Seventeen landscaped parks with jogging and walking tracks, designed around the lives of residents.</p>
+        </div>
+        <div class="am-img"><img src="public/gallery/12.jpg" alt="" /></div>
+      </article>
+      <article class="am">
+        <div class="am-n">07</div>
+        <div class="am-body">
+          <h3>Independent Electricity</h3>
+          <p>Powered via a dedicated feeder with luminous street lamps lining every road.</p>
+        </div>
+        <div class="am-img"><img src="public/gallery/10.jpg" alt="" /></div>
+      </article>
+      <article class="am">
+        <div class="am-n">08</div>
+        <div class="am-body">
+          <h3>School · Hospital · Lawn</h3>
+          <p>Demarcated zones for education, healthcare, and celebration — the village inside a city.</p>
+        </div>
+        <div class="am-img"><img src="public/gallery/30.jpg" alt="" /></div>
+      </article>
+    </div>
+
+    <div class="amen-extras">
+      <h4>And a few more quiet privileges —</h4>
+      <div class="ae-row">
+        <span>24/7 Gated Security</span>
+        <span>CCTV Surveillance</span>
+        <span>Commercial Avenue</span>
+        <span>Children's Play Zones</span>
+        <span>Fiber-Optic Ready</span>
+        <span>Waste Management</span>
+        <span>Community Gym <em>(planned)</em></span>
+        <span>Sports Courts <em>(planned)</em></span>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- GALLERY -->
-<section class="gallery" id="gallery">
-  <div class="container">
-    <div class="section-head">
-      <div class="eyebrow center"><span></span><em data-en="The Gallery" data-ur="نگارخانہ">The Gallery</em><span></span></div>
-      <h2 class="section-title center" data-en="Moments from the estate." data-ur="جاگیر کے لمحات۔">Moments from the estate.</h2>
-      <p class="section-sub" data-en="A curated look at the architecture, avenues, and atmosphere that define daily life at Tariq Gardens." data-ur="اُس فنِ تعمیر، راستوں اور فضا کی ایک منتخب جھلک جو طارق گارڈنز کی روزمرہ زندگی کو منفرد بناتی ہے۔">A curated look at the architecture, avenues, and atmosphere that define daily life at Tariq Gardens.</p>
+<!-- ═══════════════════════ CHAPTER 04 : GALLERY (horizontal scroll) ═══════════════════════ -->
+<section class="ch ch-gallery" id="chapter-04">
+  <div class="cont">
+    <div class="ch-head">
+      <div class="ch-num">Chapter 04</div>
+      <h2 class="ch-title split" data-split="Moments from the estate.">
+        <span>Moments from<br/>the <em>estate.</em></span>
+      </h2>
+      <p class="ch-lede">
+        Thirty-two frames. A year of life inside the gates.
+        Drag or scroll across.
+      </p>
     </div>
+  </div>
 
-    <div class="gallery-filters">
-      <button class="gf active" data-filter="all" data-en="All" data-ur="تمام">All</button>
-      <button class="gf" data-filter="architecture" data-en="Architecture" data-ur="فنِ تعمیر">Architecture</button>
-      <button class="gf" data-filter="landscape" data-en="Landscape" data-ur="منظرنامہ">Landscape</button>
-      <button class="gf" data-filter="infrastructure" data-en="Infrastructure" data-ur="انفراسٹرکچر">Infrastructure</button>
-      <button class="gf" data-filter="community" data-en="Community" data-ur="برادری">Community</button>
+  <!-- Pinned horizontal scroll strip -->
+  <div class="hscroll" id="hscroll">
+    <div class="hscroll-track" id="hscrollTrack">
+      <!-- Populated by JS -->
     </div>
+    <div class="hscroll-progress"><span id="hscrollBar"></span></div>
+    <div class="hscroll-counter"><span id="hscrollN">01</span> / <span id="hscrollT">32</span></div>
+  </div>
 
-    <div class="gallery-grid" id="galleryGrid">
-      <!-- Populated via JS -->
-    </div>
-
-    <div class="gallery-more">
-      <button class="btn btn-ghost dark" id="loadMore"><span data-en="Reveal More Moments" data-ur="مزید لمحات دکھائیں">Reveal More Moments</span> <i class="fa-solid fa-plus"></i></button>
+  <!-- Mosaic beneath (full catalog) -->
+  <div class="cont">
+    <div class="mosaic" id="mosaic"><!-- JS --></div>
+    <div class="mosaic-cta">
+      <button class="btn-outline" id="mosaicMore" data-cursor="more"><span>Reveal all 32 frames</span><i>↓</i></button>
     </div>
   </div>
 </section>
 
-<!-- LIGHTBOX -->
-<div class="lightbox" id="lightbox">
-  <button class="lb-close" id="lbClose" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
-  <button class="lb-prev" id="lbPrev" aria-label="Previous"><i class="fa-solid fa-chevron-left"></i></button>
-  <button class="lb-next" id="lbNext" aria-label="Next"><i class="fa-solid fa-chevron-right"></i></button>
-  <div class="lb-stage"><img id="lbImg" alt="Tariq Gardens" /></div>
-  <div class="lb-caption" id="lbCaption"></div>
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <button class="lb-close" id="lbClose" aria-label="Close">✕</button>
+  <button class="lb-prev" id="lbPrev" aria-label="Prev">←</button>
+  <button class="lb-next" id="lbNext" aria-label="Next">→</button>
+  <div class="lb-img"><img id="lbImg" alt="" /></div>
+  <div class="lb-info"><span id="lbTitle"></span><em id="lbIdx"></em></div>
 </div>
 
-<!-- TESTIMONIALS -->
-<section class="testimonials">
-  <div class="container">
-    <div class="section-head">
-      <div class="eyebrow center"><span></span>Voices of the Community<span></span></div>
-      <h2 class="section-title center">Stories from <em>behind the gates.</em></h2>
-    </div>
-    <div class="testi-grid">
-      <blockquote class="testi">
-        <div class="testi-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-        <p>“We raised two children here. The parks, the roads, the azaan from the masjid — it feels like a small town inside a city.”</p>
-        <footer>— <strong>Dr. Faiza Khan</strong> <span>Resident, 14 years</span></footer>
-      </blockquote>
-      <blockquote class="testi">
-        <div class="testi-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-        <p>“The planning is impeccable. Clean streets, constant electricity, and a community that still says salaam when you walk by.”</p>
-        <footer>— <strong>Amir Shahzad</strong> <span>Resident, 9 years</span></footer>
-      </blockquote>
-      <blockquote class="testi">
-        <div class="testi-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
-        <p>“I have lived in DHA and Bahria. Tariq Gardens has something they don't — a soul. Our family isn't going anywhere.”</p>
-        <footer>— <strong>Ayesha Malik</strong> <span>Resident, 7 years</span></footer>
-      </blockquote>
-    </div>
-  </div>
-</section>
-
-<!-- LEADERSHIP -->
-<section class="leadership" id="leadership">
-  <div class="container">
-    <div class="section-head">
-      <div class="eyebrow center"><span></span>Leadership<span></span></div>
-      <h2 class="section-title center">Three generations. <em>One standard.</em></h2>
-      <p class="section-sub">Tariq Gardens is a family-led institution, built by hand, defended by reputation, and carried forward by those who learned excellence at the dinner table.</p>
+<!-- ═══════════════════════ CHAPTER 05 : LEADERSHIP ═══════════════════════ -->
+<section class="ch ch-lead" id="chapter-05">
+  <div class="cont">
+    <div class="ch-head">
+      <div class="ch-num">Chapter 05</div>
+      <h2 class="ch-title split" data-split="Three generations. One estate.">
+        <span>Three generations.<br/><em>One</em> estate.</span>
+      </h2>
     </div>
 
-    <div class="leaders">
-      <article class="leader">
-        <div class="leader-photo"><img src="public/team/president.jpg" alt="President" /></div>
-        <div class="leader-body">
-          <div class="leader-role">President</div>
-          <h3>Muhammad Usama Tariq Khan</h3>
-          <p>Guardian of the vision. Steward of a legacy built plot by plot — and family by family.</p>
+    <div class="lead-grid">
+      <article class="ld ld-1">
+        <div class="ld-img tilt" data-tilt>
+          <img src="public/team/president.jpg" alt="" />
+          <span class="ld-idx">01</span>
+        </div>
+        <div class="ld-body">
+          <div class="ld-role">President</div>
+          <h3>Muhammad Usama<br/>Tariq Khan</h3>
+          <p>Guardian of the vision. Steward of a legacy built plot by plot, family by family. The second generation.</p>
         </div>
       </article>
-      <article class="leader">
-        <div class="leader-photo"><img src="public/team/chairman.jpg" alt="Chairman" /></div>
-        <div class="leader-body">
-          <div class="leader-role">Chairman</div>
-          <h3>Khubaib Ahmed Khan</h3>
-          <p>Architect of the present. Ensuring every road, roof, and park meets the Tariq Gardens standard.</p>
+      <article class="ld ld-2">
+        <div class="ld-img tilt" data-tilt>
+          <img src="public/team/chairman.jpg" alt="" />
+          <span class="ld-idx">02</span>
+        </div>
+        <div class="ld-body">
+          <div class="ld-role">Chairman</div>
+          <h3>Khubaib<br/>Ahmed Khan</h3>
+          <p>Architect of the present. Every road, every park, every roof meets the Tariq Gardens standard — because he walks them weekly.</p>
         </div>
       </article>
-      <article class="leader">
-        <div class="leader-photo"><img src="public/team/ceo.jpg" alt="CEO" /></div>
-        <div class="leader-body">
-          <div class="leader-role">Chief Executive Officer</div>
-          <h3>Muhammad Hesham Usama Khan</h3>
-          <p>Custodian of tomorrow. Carrying the family's promise into a new era of premium living.</p>
+      <article class="ld ld-3">
+        <div class="ld-img tilt" data-tilt>
+          <img src="public/team/ceo.jpg" alt="" />
+          <span class="ld-idx">03</span>
+        </div>
+        <div class="ld-body">
+          <div class="ld-role">Chief Executive</div>
+          <h3>Muhammad Hesham<br/>Usama Khan</h3>
+          <p>Custodian of tomorrow. The third generation. Carrying the family's promise into a new century of premium living.</p>
         </div>
       </article>
     </div>
   </div>
 </section>
 
-<!-- CTA -->
-<section class="cta-band">
-  <div class="cta-bg" style="background-image:url('public/gallery/16.jpg')"></div>
-  <div class="cta-veil"></div>
-  <div class="container cta-content">
-    <div class="eyebrow center light"><span></span>Begin the Journey<span></span></div>
-    <h2 class="section-title center">A private viewing, <em>by appointment.</em></h2>
-    <p>Step through the gates with a member of our team. Walk the boulevards, meet the neighbours, feel the stillness that photographs cannot capture.</p>
-    <div class="cta-ctas">
-      <a href="#contact" class="btn btn-primary large"><span>Schedule a Private Tour</span> <i class="fa-solid fa-arrow-right"></i></a>
-      <a href="tel:+924235844230" class="btn btn-outline large"><i class="fa-solid fa-phone"></i><span>+92 42 3584 4230</span></a>
+<!-- ═══════════════════════ CHAPTER 06 : VOICES ═══════════════════════ -->
+<section class="ch ch-voices" id="chapter-06">
+  <div class="cont">
+    <div class="ch-head center">
+      <div class="ch-num">Chapter 06</div>
+      <h2 class="ch-title split" data-split="From behind the gates.">
+        <span>From behind the <em>gates.</em></span>
+      </h2>
+    </div>
+
+    <div class="voices-rail" id="voicesRail">
+      <article class="vc">
+        <div class="vc-n">01</div>
+        <p>"We raised two children here. The parks, the roads, the azaan from the masjid — it feels like a small town inside a city."</p>
+        <footer><span>Dr. Faiza Khan</span><em>14 years</em></footer>
+      </article>
+      <article class="vc">
+        <div class="vc-n">02</div>
+        <p>"The planning is impeccable. Clean streets, constant electricity, and neighbours who still say salaam when you walk by."</p>
+        <footer><span>Amir Shahzad</span><em>9 years</em></footer>
+      </article>
+      <article class="vc">
+        <div class="vc-n">03</div>
+        <p>"I've lived in DHA and Bahria. Tariq Gardens has something they don't — a soul. Our family isn't going anywhere."</p>
+        <footer><span>Ayesha Malik</span><em>7 years</em></footer>
+      </article>
+      <article class="vc">
+        <div class="vc-n">04</div>
+        <p>"Our children go to school, play in the park, and come home — all inside the gates. It's the life my parents wished for me."</p>
+        <footer><span>Hamza Qureshi</span><em>11 years</em></footer>
+      </article>
+      <article class="vc">
+        <div class="vc-n">05</div>
+        <p>"Thirty years on, the community still feels personal. The Tariq family still answers the phone themselves."</p>
+        <footer><span>Nadia Rehman</span><em>18 years</em></footer>
+      </article>
     </div>
   </div>
 </section>
 
-<!-- CONTACT -->
-<section class="contact" id="contact">
-  <div class="container contact-grid">
-    <div class="contact-info">
-      <div class="eyebrow"><span></span>Get in Touch</div>
-      <h2 class="section-title">We would love to <em>hear from you.</em></h2>
-      <p class="lead">Whether you're considering a plot, a visit, or simply a conversation — our team is ready to welcome you.</p>
+<!-- ═══════════════════════ VISIT ═══════════════════════ -->
+<section class="ch ch-visit" id="visit">
+  <div class="cont">
+    <div class="visit-grid">
+      <div class="visit-l">
+        <div class="ch-num">Visit</div>
+        <h2 class="ch-title split" data-split="Walk the boulevards.">
+          <span>Walk the boulevards.<br/><em>Stay</em> for tea.</span>
+        </h2>
+        <p class="visit-lede">
+          Private viewings by appointment. Meet a member of the Tariq
+          family, walk the plots, feel the stillness no photograph can
+          hold.
+        </p>
 
-      <div class="contact-cards">
-        <div class="cc">
-          <i class="fa-solid fa-location-dot"></i>
-          <div>
-            <strong>Head Office</strong>
-            <span>12-Ahmed Block, New Garden Town,<br/>Lahore, Pakistan.</span>
-          </div>
-        </div>
-        <div class="cc">
-          <i class="fa-solid fa-phone"></i>
-          <div>
-            <strong>Call Us</strong>
-            <a href="tel:+924235844230">+92-42-35844230-3</a>
-          </div>
-        </div>
-        <div class="cc">
-          <i class="fa-solid fa-envelope"></i>
-          <div>
-            <strong>Email</strong>
-            <a href="mailto:info@tgardens.com.pk">info@tgardens.com.pk</a>
-          </div>
-        </div>
-        <div class="cc">
-          <i class="fa-solid fa-clock"></i>
-          <div>
-            <strong>Office Hours</strong>
-            <span>Mon — Sat · 9:00 AM — 7:00 PM</span>
-          </div>
+        <dl class="visit-dl">
+          <div><dt>Head Office</dt><dd>12-Ahmed Block, New Garden Town,<br/>Lahore, Pakistan</dd></div>
+          <div><dt>Call</dt><dd><a href="tel:+924235844230">+92 42 3584 4230-3</a></dd></div>
+          <div><dt>Email</dt><dd><a href="mailto:info@tgardens.com.pk">info@tgardens.com.pk</a></dd></div>
+          <div><dt>Hours</dt><dd>Monday – Saturday · 9:00 AM – 7:00 PM</dd></div>
+        </dl>
+
+        <div class="visit-socials">
+          <a href="#" data-cursor="follow">Instagram</a>
+          <a href="#" data-cursor="follow">Facebook</a>
+          <a href="#" data-cursor="follow">YouTube</a>
+          <a href="https://wa.me/924235844230" data-cursor="chat">WhatsApp</a>
         </div>
       </div>
 
-      <div class="contact-socials">
-        <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-        <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
-        <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-        <a href="#" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-      </div>
-    </div>
+      <form class="visit-form" onsubmit="event.preventDefault(); handleVisit(this);">
+        <div class="vf-head">
+          <span class="vf-eye">— Request a private viewing</span>
+          <h3>Tell us <em>when.</em></h3>
+        </div>
 
-    <form class="contact-form" onsubmit="event.preventDefault(); handleSubmit(this);">
-      <h3>Request a Private Viewing</h3>
-      <p>Share a few details and a member of our concierge team will be in touch within one working day.</p>
-      <div class="row">
-        <label>
-          <span>Full Name</span>
-          <input type="text" required placeholder="Your name" />
-        </label>
-        <label>
-          <span>Email</span>
-          <input type="email" required placeholder="you@example.com" />
-        </label>
-      </div>
-      <div class="row">
-        <label>
-          <span>Phone</span>
-          <input type="tel" placeholder="+92 300 0000000" />
-        </label>
-        <label>
-          <span>Interest</span>
-          <select>
-            <option>Residential Plot</option>
-            <option>Already-built Home</option>
-            <option>Commercial Plot</option>
-            <option>Private Tour</option>
-            <option>General Enquiry</option>
-          </select>
-        </label>
-      </div>
-      <label class="full">
-        <span>Message</span>
-        <textarea rows="4" placeholder="Tell us a little about what you're looking for..."></textarea>
-      </label>
-      <div class="form-consent">
-        <label><input type="checkbox" required /> I agree to be contacted by the Tariq Gardens team.</label>
-      </div>
-      <button type="submit" class="btn btn-primary full"><span>Send Enquiry</span> <i class="fa-solid fa-paper-plane"></i></button>
-      <div class="form-success" id="formSuccess">
-        <i class="fa-solid fa-circle-check"></i> Thank you. Your enquiry has been received — we will be in touch shortly.
-      </div>
-    </form>
-  </div>
-</section>
+        <div class="vf-row">
+          <label><span>Name</span><input type="text" required /></label>
+          <label><span>Email</span><input type="email" required /></label>
+        </div>
+        <div class="vf-row">
+          <label><span>Phone</span><input type="tel" placeholder="+92 300 ··· ····" /></label>
+          <label><span>Interest</span>
+            <select>
+              <option>Residential Plot</option>
+              <option>Already-built Home</option>
+              <option>Commercial Plot</option>
+              <option>Private Tour</option>
+              <option>General Enquiry</option>
+            </select>
+          </label>
+        </div>
+        <label class="full"><span>Message</span><textarea rows="4" placeholder="A few lines..."></textarea></label>
 
-<!-- FOOTER -->
-<footer class="footer">
-  <div class="footer-top container">
-    <div class="f-brand">
-      <img src="public/logo.png" alt="Tariq Gardens" class="f-brand-logo" />
-      <h3>Tariq Gardens</h3>
-      <p>A master-planned community on the refined edge of Lahore — where architecture, nature, and neighbourhood live in harmony.</p>
-      <div class="contact-socials small">
-        <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-        <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
-        <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-        <a href="#" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-      </div>
-    </div>
-    <div class="f-col">
-      <h4>Explore</h4>
-      <a href="#story">Our Story</a>
-      <a href="#lifestyle">Lifestyle</a>
-      <a href="#amenities">Amenities</a>
-      <a href="#masterplan">Master Plan</a>
-      <a href="#gallery">Gallery</a>
-    </div>
-    <div class="f-col">
-      <h4>Community</h4>
-      <a href="#leadership">Leadership</a>
-      <a href="#contact">Contact Us</a>
-      <a href="#">Dealers Network</a>
-      <a href="#">Careers</a>
-      <a href="#">Privacy Policy</a>
-    </div>
-    <div class="f-col">
-      <h4>Newsletter</h4>
-      <p>Occasional updates from inside the estate.</p>
-      <form class="nl" onsubmit="event.preventDefault(); this.querySelector('.nl-ok').style.display='block'; this.querySelector('input').value='';">
-        <input type="email" placeholder="Your email address" required />
-        <button type="submit"><i class="fa-solid fa-arrow-right"></i></button>
-        <div class="nl-ok">Subscribed. Welcome.</div>
+        <button type="submit" class="btn-primary full magnet" data-cursor="send">
+          <span>Send the Request</span><i>→</i>
+        </button>
+
+        <div class="vf-ok" id="vfOk">
+          Thank you. A member of our team will be in touch within one working day.
+        </div>
       </form>
     </div>
   </div>
-  <div class="footer-bot">
-    <div class="container">
-      <span>© <span id="yr"></span> Tariq Gardens Housing Scheme. All rights reserved.</span>
+</section>
+
+<!-- ═══════════════════════ FOOTER ═══════════════════════ -->
+<footer class="ft">
+  <div class="cont">
+    <div class="ft-mega">
+      <span class="display">TARIQ&nbsp;GARDENS</span>
+    </div>
+
+    <div class="ft-cols">
+      <div class="ft-brand">
+        <img src="public/logo.png" alt="" />
+        <p>A thirty-year-old estate on the refined edge of Lahore — composed of boulevards, gardens, and a promise carried across three generations.</p>
+      </div>
+      <div>
+        <span class="eyebrow">Estate</span>
+        <a href="#chapter-01">The Estate</a>
+        <a href="#chapter-02">Master Plan</a>
+        <a href="#chapter-03">Amenities</a>
+        <a href="#chapter-04">Gallery</a>
+      </div>
+      <div>
+        <span class="eyebrow">Office</span>
+        <a href="mailto:info@tgardens.com.pk">info@tgardens.com.pk</a>
+        <a href="tel:+924235844230">+92 42 3584 4230</a>
+        <span class="muted">12-Ahmed Block, New Garden Town, Lahore</span>
+      </div>
+      <div>
+        <span class="eyebrow">Follow</span>
+        <a href="#">Instagram</a>
+        <a href="#">Facebook</a>
+        <a href="#">YouTube</a>
+        <a href="#">LinkedIn</a>
+      </div>
+    </div>
+
+    <div class="ft-bot">
+      <span>© <span id="yr"></span> Tariq Gardens Housing Scheme. A refined address in Lahore, Pakistan.</span>
       <span class="credit">
-        Built with <span class="built-heart" aria-label="love">❤️</span> by
+        Built with <span class="heart">❤️</span> by
         <a href="https://latencystudio.com" target="_blank" rel="noopener" class="studio-link">Latency&nbsp;Studio</a>
       </span>
     </div>
   </div>
 </footer>
 
-<!-- Floating WhatsApp -->
-<a href="https://wa.me/924235844230" class="wa-float" aria-label="WhatsApp">
-  <i class="fa-brands fa-whatsapp"></i>
-  <span class="wa-pulse"></span>
-</a>
-
 <!-- Back to top -->
-<button class="totop" id="toTop" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
+<button class="to-top" id="toTop" aria-label="Back to top" data-cursor="up">↑</button>
 
+<!-- Scroll rail progress -->
+<div class="rail" id="rail" aria-hidden="true">
+  <div class="rail-n"><span id="railN">01</span><em>/07</em></div>
+  <div class="rail-fill"><span id="railFill"></span></div>
+</div>
+
+<!-- Smooth scroll + motion -->
+<script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
 <script src="script.js"></script>
 </body>
 </html>

@@ -165,7 +165,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 
 .nav-right{
   display:flex;align-items:center;gap:1.4rem;
-  margin-left:auto;
+  margin-inline-start:auto;
 }
 
 /* Language switch */
@@ -187,7 +187,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
   text-transform:uppercase;
 }
 .lang-opt[data-lang="ur"]{
-  font-family:"Almarai", "Readex Pro", var(--sans);
+  font-family:"Almarai", system-ui, sans-serif;
   font-size:.88rem;
   letter-spacing:0;
   text-transform:none;
@@ -456,60 +456,31 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 body.menu-open{overflow:hidden}
 
 /* ======== URDU MODE ======== */
+:root{
+  --urdu:"Almarai", system-ui, sans-serif;
+}
 html[lang="ur"] body{
-  font-family:"Almarai", "Readex Pro", var(--sans);
+  font-family:var(--urdu);
   line-height:1.85;
   font-weight:400;
 }
-html[lang="ur"] .brand-name,
-html[lang="ur"] .menu-label,
-html[lang="ur"] .nav-cta,
-html[lang="ur"] .mo-close,
-html[lang="ur"] .eyebrow,
-html[lang="ur"] .section-title,
-html[lang="ur"] .mo-links a,
-html[lang="ur"] .mo-quote,
-html[lang="ur"] .hero-title,
-html[lang="ur"] .hero-eyebrow,
-html[lang="ur"] .life-meta h3,
-html[lang="ur"] .amenity h3,
-html[lang="ur"] .map-body h3,
-html[lang="ur"] .mp-live-info h3,
-html[lang="ur"] .leader h3,
-html[lang="ur"] .testi p,
-html[lang="ur"] .pb-quote,
-html[lang="ur"] .mini-title,
-html[lang="ur"] .lead,
-html[lang="ur"] .section-sub,
-html[lang="ur"] .hero-sub,
-html[lang="ur"] .contact-form h3,
-html[lang="ur"] .contact-form p,
-html[lang="ur"] .f-brand h3,
-html[lang="ur"] .f-brand p,
-html[lang="ur"] .amenity p,
-html[lang="ur"] .story-copy p,
-html[lang="ur"] .map-body p,
-html[lang="ur"] .life-meta p,
-html[lang="ur"] .counter span,
-html[lang="ur"] .hero-stats small,
-html[lang="ur"] .connect span,
-html[lang="ur"] .f-col a,
-html[lang="ur"] .mo-contact-row,
-html[lang="ur"] .pb-author,
-html[lang="ur"] .vb-item span,
-html[lang="ur"] .btn span,
-html[lang="ur"] .gf,
-html[lang="ur"] .cc strong,
-html[lang="ur"] .cc span,
-html[lang="ur"] .mo-foot{
-  font-family:"Almarai", "Readex Pro", var(--sans) !important;
+/* Kill italics everywhere in Urdu — Arabic script must not be slanted */
+html[lang="ur"] em,
+html[lang="ur"] i:not([class*="fa-"]){
+  font-style:normal !important;
+  font-family:var(--urdu) !important;
+}
+/* All Urdu text → Almarai (single family for the whole site) */
+html[lang="ur"],
+html[lang="ur"] *:not(i):not([class*="fa-"]){
+  font-family:var(--urdu) !important;
   letter-spacing:0 !important;
   text-transform:none !important;
-  line-height:1.8;
+  font-style:normal !important;
 }
 html[lang="ur"] .hero-title{line-height:1.15;font-weight:800}
 html[lang="ur"] .mo-links a{line-height:1.3;padding:.9rem 0;font-weight:700}
-html[lang="ur"] .mo-links a em{font-family:var(--sans) !important}
+html[lang="ur"] .mo-links a em{font-family:var(--urdu) !important;font-style:normal !important}
 html[lang="ur"] .section-title{line-height:1.3;font-weight:700}
 html[lang="ur"] .brand-name{letter-spacing:.05em !important;font-size:1.1rem;font-weight:700}
 html[lang="ur"] .btn{letter-spacing:.02em !important;font-weight:700}
@@ -525,10 +496,16 @@ html[lang="ur"] .pb-quote{line-height:1.45;font-weight:700}
 html[lang="ur"] .hero-sub,
 html[lang="ur"] .section-sub,
 html[lang="ur"] .lead{line-height:1.8;font-weight:400}
+html[lang="ur"] .hero-title .line-1,
+html[lang="ur"] .hero-title .line-2{
+  font-family:var(--urdu) !important;
+  font-style:normal !important;
+}
 html[lang="ur"] .hero-title .line-2 em{
   background:linear-gradient(135deg,var(--gold-soft),var(--gold));
   -webkit-background-clip:text;background-clip:text;color:transparent;
-  font-style:normal;
+  font-family:var(--urdu) !important;
+  font-style:normal !important;
 }
 html[lang="ur"] .eyebrow,
 html[lang="ur"] .menu-label,
@@ -542,11 +519,47 @@ html[lang="ur"] .hero-stats small,
 html[lang="ur"] .f-col h4{
   font-size:.85rem;
 }
-html[lang="ur"][dir="rtl"] .hero-ctas,
-html[lang="ur"][dir="rtl"] .cta-ctas,
-html[lang="ur"][dir="rtl"] .hero-stats{direction:rtl}
-html[lang="ur"] .btn i.fa-arrow-right{transform:scaleX(-1)}
-html[lang="ur"] .link-arrow i.fa-arrow-right{transform:scaleX(-1)}
+/* ======== TRUE RTL LAYOUT (Urdu) ======== */
+html[dir="rtl"] body{text-align:right}
+html[dir="rtl"] .hero-ctas,
+html[dir="rtl"] .cta-ctas,
+html[dir="rtl"] .hero-stats,
+html[dir="rtl"] .nav-inner,
+html[dir="rtl"] .nav-right,
+html[dir="rtl"] .announcement-track,
+html[dir="rtl"] .mo-top,
+html[dir="rtl"] .mo-foot,
+html[dir="rtl"] .footer-bot .container,
+html[dir="rtl"] .vb-strip{direction:rtl}
+
+/* Flip arrow icons (physical direction cues) */
+html[dir="rtl"] .fa-arrow-right,
+html[dir="rtl"] .fa-arrow-up-right-from-square{transform:scaleX(-1)}
+
+/* Keep numeric / latin fragments LTR inside Urdu flow */
+html[lang="ur"] .nav-phone,
+html[lang="ur"] .hero-stats strong,
+html[lang="ur"] .counter .num{direction:ltr;unicode-bidi:isolate}
+
+/* Announcement marquee — preserve visual scroll but mirror origin */
+html[dir="rtl"] .announcement-track{animation-direction:reverse}
+
+/* Footer + headings align naturally with text-align:start via dir */
+html[dir="rtl"] .eyebrow,
+html[dir="rtl"] .section-title,
+html[dir="rtl"] .section-sub,
+html[dir="rtl"] .story-copy,
+html[dir="rtl"] .life-meta,
+html[dir="rtl"] .amenity,
+html[dir="rtl"] .map-body,
+html[dir="rtl"] .leader,
+html[dir="rtl"] .contact-form,
+html[dir="rtl"] .f-col,
+html[dir="rtl"] .f-brand{text-align:right}
+
+html[dir="rtl"] .eyebrow.center,
+html[dir="rtl"] .section-title.center,
+html[dir="rtl"] .section-sub.center{text-align:center}
 
 /* Hide original hamburger toggle (replaced by menu-trigger) */
 .nav-toggle,.nav-mobile{display:none !important}

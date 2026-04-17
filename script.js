@@ -79,7 +79,8 @@ document.addEventListener('keydown', (e) => {
 /* ---------- Language Toggle (EN / UR) ---------- */
 function setLang(lang) {
   document.documentElement.setAttribute('lang', lang);
-  // Do NOT flip overall direction (would break grid layouts); Urdu text wraps correctly naturally
+  // Truly flip direction: RTL for Urdu, LTR for English
+  document.documentElement.setAttribute('dir', lang === 'ur' ? 'rtl' : 'ltr');
 
   // Sync all toggle buttons
   document.querySelectorAll('.lang-opt').forEach(btn => {
@@ -102,6 +103,16 @@ function setLang(lang) {
       el.innerHTML = el.dataset[key];
     }
   });
+
+  // Swap placeholders on inputs / textareas
+  document.querySelectorAll('[data-en-placeholder], [data-ur-placeholder]').forEach(el => {
+    const val = el.dataset[lang + 'Placeholder'];
+    if (val !== undefined) el.setAttribute('placeholder', val);
+  });
+
+  // Re-populate dynamic year span (may have been replaced by HTML swap)
+  const yr = document.getElementById('yr');
+  if (yr) yr.textContent = new Date().getFullYear();
 
   try { localStorage.setItem('tg-lang', lang); } catch(e) {}
 }
